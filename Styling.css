@@ -1,0 +1,162 @@
+@import "Colorsheet.css";
+
+body {
+    margin: 0px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--bg-color); /* Ensure --bg-color is defined in Colorsheet.css */
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.headerbar {
+    background-color: var(--main-darkblue-color); /* Ensure --main-darkblue-color is defined in Colorsheet.css */
+    color: var(--white); /* Ensure --white is defined in Colorsheet.css */
+    padding: 5px 0px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    width: 100vw;
+}
+
+.Title {
+    font-size: 2rem;
+}
+
+.bottombar {
+    background-color: #0F3E58;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    position: fixed;
+    bottom: 0;
+    overflow: hidden;
+    width: 100vw;
+}
+
+.left_menu {
+    display: flex;
+    flex-direction: row;
+    margin: 0px 25px;
+}
+
+.left_menu a {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.left_menu a:hover {
+    background-color: var(--main-light-blue); /* Ensure --main-light-blue is defined in Colorsheet.css */
+}
+
+.left_menu a.active {
+    background-color: var(--main-light-blue); /* Ensure --main-light-blue is defined in Colorsheet.css */
+}
+
+.right_menu {
+    padding: 10px 25px;
+}
+
+.myBag-Table,
+.addNewClubTable,
+.playHole-Table,
+.coursesTable {
+    width: 60vw;
+    margin: auto;
+    background-color: var(--white); /* Ensure --white is defined in Colorsheet.css */
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    overflow-y: auto;
+}
+
+.playHole-Table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tableHeader,
+.courseTableHeader {
+    padding: 0px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.MybagTableTitle,
+.courseTableHeaderTitle {
+    color: var(--main-darkblue-color); /* Ensure --main-darkblue-color is defined in Colorsheet.css */
+}
+
+.addClub {
+    width: 25px;
+}
+
+.ClubHeader,
+.addNewClubHeader,
+.playHoleHeader,
+.courseHeader {
+    padding: 0px 10px;
+    background-color: var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--white); /* Ensure --white is defined in Colorsheet.css */
+}
+
+.playHoleHeader {
+    width: -webkit-fill-available; /* Can also use width: 100%; for better compatibility */
+}
+
+.clubContent,
+.courseListItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
+}
+
+.clubContentLeft {
+    display: flex;
+    gap: 10px;
+}
+
+.clubInfo,
+.courseInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.clubType,
+.courseName {
+    width: max-content;
+    font-size: 1.2rem;
+    margin: 0px;
+}
+
+.clubBrand,
+.courseLocation {
+    font-size: 1rem;
+    margin: 0px;
+}
+
+#clubDistance,
+.roundInfo {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#myImage {
+    width: 600px; /* Adjust as needed */
+    height: auto;
+    border: 1px solid black;
+}

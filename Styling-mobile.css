@@ -1,0 +1,54 @@
+@media only screen and (max-width: 1000px) {
+    .bottombar{
+        height: 97px !important;
+        width: 100vw !important;
+    }
+
+    .left_menu{
+        height: -webkit-fill-available !important;
+        font-size: 24px !important;
+    }
+    
+    .left_menu img{
+        height: -webkit-fill-available;
+        width: auto;
+    }
+
+    .myBag-Table, .addNewClubTable, .playHole-Table, .coursesTable{
+        width: 90vw !important;
+    }
+
+    #myImage{
+        width: -webkit-fill-available !important;
+        height: auto;
+    }
+
+    .MybagTableTitle{
+        font-size: 24px;
+    }
+
+    .clubInfo img{
+        width: 30px;
+        height: auto;
+    }
+
+    .ClubHeader{
+        font-size: 20px;
+    }
+
+    #showClubs{
+        font-size: 21px;
+    }
+
+    .clubType {
+        font-size: 20px !important;
+    }
+
+    .clubBrand{
+        font-size: 14px !important;
+    }
+
+    #clubDistance{
+        font-size: 20px !important;
+    }
+}
