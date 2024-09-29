@@ -2,37 +2,45 @@ function showClubs() {
     // Zoek de div waar we de club informatie willen tonen
     const showClubsDiv = document.getElementById("showClubs");
 
-    // Maak een array om alle clubs op te slaan
+    // Maak een array om alle clubs en hun keys op te slaan
     let clubsArray = [];
 
-    // Loop door alle clubs in localStorage
-    let clubNumber = 1;
-    while (localStorage.getItem("club" + clubNumber) !== null) {
-        // Haal de club op uit localStorage
-        const club = JSON.parse(localStorage.getItem("club" + clubNumber));
+    // Loop door alle items in localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i); // Haal de sleutel van het item op
 
-        // Voeg de club toe aan de array
-        clubsArray.push(club);
-
-        // Ga naar de volgende club
-        clubNumber++;
+        // Controleer of de key begint met 'club' en of het JSON-parsebaar is
+        if (key.startsWith("club")) {
+            try {
+                const club = JSON.parse(localStorage.getItem(key)); // Haal de club op
+                if (club) {
+                    // Voeg de club en zijn key toe aan de array
+                    clubsArray.push({ clubData: club, key: key });
+                }
+            } catch (e) {
+                console.error(`Error parsing club data for key: ${key}`, e);
+            }
+        }
     }
 
     if (clubsArray.length === 0) {
         showClubsDiv.innerHTML = `<p>Add clubs to your bag</p>`;
-        return;  // Stop de functie hier
+        return;  // Stop de functie hier als er geen clubs zijn
     }
 
     // Sorteer de clubs op basis van clubDistance (van groot naar klein)
-    clubsArray.sort((a, b) => b.distance - a.distance);
+    clubsArray.sort((a, b) => b.clubData.distance - a.clubData.distance);
 
     // Begin met een lege string om de clubs op te slaan
     let clubsHTML = "";
 
     // Loop door de gesorteerde array en maak de HTML voor elke club
-    clubsArray.forEach((club) => {
+    clubsArray.forEach((clubItem, index) => {
+        const club = clubItem.clubData; // De club gegevens
+        const clubKey = clubItem.key;   // De originele localStorage key (bijv. "club3")
+
         let clubHTML = `
-            <a href="#" class="clubContent">
+            <a href="editClub.html?club=${clubKey}" class="clubContent club${index + 1}">
                 <div class="clubContentLeft">
                     <img src="icons/golfclub.svg" alt="golfclub"/>
                     <div class="clubInfo">

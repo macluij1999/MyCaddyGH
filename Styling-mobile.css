@@ -9,7 +9,7 @@
     }
     
     .bottombar{
-        height: 97px !important;
+        height: 87px !important;
         width: 100vw !important;
     }
 
@@ -32,11 +32,11 @@
     .left_menu img{
         height: -webkit-fill-available;
         width: auto;
-        max-height: 47px !important;
+        max-height: 40px !important;
         max-width: 38px !important;
     }
 
-    .myBag-Table, .addNewClubTable, .playHole-Table, .coursesTable{
+    .myBag-Table, .addNewClubTable, .playHole-Table, .coursesTable, .editClubSection{
         width: 90vw !important;
     }
 
@@ -54,7 +54,7 @@
         height: auto;
     }
 
-    .ClubHeader, .addNewClubHeader{
+    .ClubHeader, .addNewClubHeader, .editClubHeader{
         font-size: 20px;
     }
 

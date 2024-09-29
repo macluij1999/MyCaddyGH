@@ -36,19 +36,33 @@
                 </div>                
             </div>
         </header>
-        <div class="myBag-Table">
-            <div class="tableHeader">
-                <h2 class="MybagTableTitle">My bag</h2>
-                <a href="addNewClub.html">
-                    <img class="addClub" src="icons/plus.svg" alt="Add new club"/>
-                </a>
+        <div class="editClubSection">
+            <div class="editClubHeader">
+                <h2 class="editClubHeaderTitle">Edit club</h2>
             </div>
-            <div class="ClubHeader">
-                <h2 class="ClubTitle">Club</h2>
-                <h2 class="DistanceTitle">Distance</h2>
+            <div class="editClub"></div>
+            <div class="editClubButtons">
+                <form class="editClubCancel" action="Mybag.html">
+                    <input type="submit" value="Cancel" />
+                </form>
+                <button class="editClubSubmit" onclick="editClub()">Save changes</button>
+                <button id="open-dialog" class="editClubDeleter">Delete club</button>
+                <dialog id="myDialog" class="deleteDialogBox">
+                    <div class="deleteDialogHeader">
+                        <h2>Delete club</h2>
+                    </div>
+                    <div class="deleteDialogText">
+                        <p>Are you sure you want to delete this club? You can't undo this action</p>
+                    </div>
+                    <div class="deleteDialogButtons">
+                        <button id="close-dialog">Cancel</button>
+                        <button onclick="deleteClub()">Confirm action</button>
+                    </div>
+                </dialog>
             </div>
-            <div id="showClubs"><script>showClubs()</script></div>
- 
         </div>
+        <script src="JS/editClub.js"></script>
+        <script src="JS/deleteClub.js"></script>
+        <script src="JS/dialogFunction.js"></script>
     </body>
-</html>
+ </html>

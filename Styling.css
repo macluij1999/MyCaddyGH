@@ -69,7 +69,8 @@ a {
 .myBag-Table,
 .addNewClubTable,
 .playHole-Table,
-.coursesTable {
+.coursesTable,
+.editClubSection {
     width: 60vw;
     margin: auto;
     background-color: var(--white);
@@ -104,7 +105,8 @@ a {
 .ClubHeader,
 .addNewClubHeader,
 .playHoleHeader,
-.courseHeader {
+.courseHeader,
+.editClubHeader {
     padding: 0px 10px;
     background-color: var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
     display: flex;
@@ -159,4 +161,27 @@ a {
     width: 600px; /* Adjust as needed */
     height: auto;
     border: 1px solid black;
+}
+
+.deleteDialogBox{
+    padding: 0px;
+    border: 2px solid var(--delete-red);
+}
+
+.deleteDialogHeader{
+    background-color: var(--delete-red);
+    padding: 5px 10px;
+}
+
+.deleteDialogHeader h2{
+    margin: 0px;
+    color: var(--white);
+}
+
+.deleteDialogText{
+    padding: 5px 10px;
+}
+
+.deleteDialogButtons{
+    padding: 5px 10px;
 }
