@@ -72,7 +72,7 @@ a {
 .coursesTable {
     width: 60vw;
     margin: auto;
-    background-color: var(--white); /* Ensure --white is defined in Colorsheet.css */
+    background-color: var(--white);
     margin-top: 6rem;
     margin-bottom: 6rem;
     overflow-y: auto;

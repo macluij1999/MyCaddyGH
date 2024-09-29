@@ -1,4 +1,13 @@
 @media only screen and (max-width: 1000px) {
+    
+    .Title{
+        font-size: 23px !important;
+    }
+
+    h2{
+        font-size: 20px;
+    }
+    
     .bottombar{
         height: 97px !important;
         width: 100vw !important;
@@ -6,12 +15,25 @@
 
     .left_menu{
         height: -webkit-fill-available !important;
-        font-size: 24px !important;
+        font-size: 18px !important;
+        margin: 0px 0px !important;
+    }
+
+    .left_menu a{
+        padding: 5px 15px !important;
+        justify-content: flex-start !important;
+
     }
     
+    .left_menu div{
+        white-space: Nowrap !important;
+    }
+
     .left_menu img{
         height: -webkit-fill-available;
         width: auto;
+        max-height: 47px !important;
+        max-width: 38px !important;
     }
 
     .myBag-Table, .addNewClubTable, .playHole-Table, .coursesTable{
@@ -32,7 +54,7 @@
         height: auto;
     }
 
-    .ClubHeader{
+    .ClubHeader, .addNewClubHeader{
         font-size: 20px;
     }
 
