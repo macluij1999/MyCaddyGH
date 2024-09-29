@@ -46,11 +46,14 @@
         width: 90vw !important;
         margin-top: 50px !important;
         margin-bottom: 50px !important;
+        overflow: hidden;
     }
 
     #myImage{
-        width: -webkit-fill-available !important;
+        width: 100%;
         height: auto;
+        display: block;
+        margin: 0 auto;    
     }
 
     .MybagTableTitle{
