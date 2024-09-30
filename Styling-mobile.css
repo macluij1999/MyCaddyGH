@@ -95,8 +95,14 @@
         margin: 0px 0;
         font-size: 18px;
     }
+
     .addNewClubTable{
         width: 90vw !important;
         overflow: hidden;
+    }
+
+    .golffield{
+        bottom: 34px !important;
+        width: 60vw !important;
     }
 }

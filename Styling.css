@@ -285,3 +285,7 @@ h1 {
 .addNewClubSave{
     background-color: var(--main-green);
 }
+
+.closeIcon{
+    padding-right: 5px;
+}

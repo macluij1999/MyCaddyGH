@@ -59,6 +59,7 @@
             <div class="addNewClubTable">
                 <div class="addNewClubHeader">
                     <h2 class="addNewClubTitle">Add new club</h2>
+                    <img src="icons/close.svg" id="close-dialog" class="closeIcon"/>
                 </div>
                 <div class="addNewClubSection">
                     <div>
@@ -75,7 +76,7 @@
                     </div>
                 </div>
                 <div class="addNewClubButtons">
-                    <button type="button" id="close-dialog" class="addNewClubCancel">Cancel</button>
+                    <button type="button" onclick="closeDialog()" class="addNewClubCancel">Cancel</button>
                     <button type="button" onclick="addNewClub()" class="addNewClubSave">Add new club</button>
                 </div>
             </div>
