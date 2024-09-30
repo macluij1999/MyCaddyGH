@@ -8,6 +8,7 @@
 
         <script type="text/javascript" src="JS/driverDistance.js"></script>
         <script type="text/javascript" src="JS/showClubs.js"></script>
+        <script type="text/javascript" src="JS/addNewClub.js"></script>
     </head>
     <body>
         <header>
@@ -37,12 +38,13 @@
                     </div>
                 </div>                
             </div>
+            <img class="golffield" src="icons/golffield.svg" alt="golffield"/>
         </header>
         <div class="myBag-Table">
             <div class="tableHeader">
                 <h2 class="MybagTableTitle">My bag</h2>
-                <a href="addNewClub.html">
-                    <img class="addClub" src="icons/plus.svg" alt="Add new club"/>
+                <!-- <a href="addNewClub.html">-->
+                    <img id="open-dialog" class="addClub" src="icons/plus.svg" alt="Add new club"/>
                 </a>
             </div>
             <div class="ClubHeader">
@@ -52,5 +54,32 @@
             <div id="showClubs"><script>showClubs()</script></div>
  
         </div>
+
+        <dialog id="myDialog" class="addNewClubDialogbox">
+            <div class="addNewClubTable">
+                <div class="addNewClubHeader">
+                    <h2 class="addNewClubTitle">Add new club</h2>
+                </div>
+                <div class="addNewClubSection">
+                    <div>
+                        <h3>Club type</h3>
+                        <input type="text" id="clubTypeInput"/>
+                    </div>
+                    <div>
+                        <h3>Club brand</h3>
+                        <input type="text" id="clubBrandInput"/>
+                    </div>
+                    <div>
+                        <h3>Club distance</h3>
+                        <input type="number" id="clubDistanceInput"/>
+                    </div>
+                </div>
+                <div class="addNewClubButtons">
+                    <button type="button" id="close-dialog" class="addNewClubCancel">Cancel</button>
+                    <button type="button" onclick="addNewClub()" class="addNewClubSave">Add new club</button>
+                </div>
+            </div>
+        </dialog>
+        <script src="JS/dialogFunction.js"></script>
     </body>
 </html>

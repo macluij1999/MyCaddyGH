@@ -1,8 +1,8 @@
 function addNewClub() {
     // Haal de waarden op van de invoervelden
-    const clubType = document.getElementById("clubType").value;
-    const clubBrand = document.getElementById("clubBrand").value;
-    const clubDistance = document.getElementById("clubDistance").value;
+    const clubType = document.getElementById("clubTypeInput").value;
+    const clubBrand = document.getElementById("clubBrandInput").value;
+    const clubDistance = document.getElementById("clubDistanceInput").value;
 
     // Controleer of de velden zijn ingevuld
     if (clubType === "" || clubBrand === "" || clubDistance === "") {
@@ -27,9 +27,11 @@ function addNewClub() {
     localStorage.setItem("club" + clubNumber, JSON.stringify(club));
 
     // Maak de velden leeg na het opslaan
-    document.getElementById("clubType").value = "";
-    document.getElementById("clubBrand").value = "";
-    document.getElementById("clubDistance").value = "";
+    document.getElementById("clubTypeInput").value = "";
+    document.getElementById("clubBrandInput").value = "";
+    document.getElementById("clubDistanceInput").value = "";
+
+    closeDialog();
 
     window.location = "Mybag.html";
 }

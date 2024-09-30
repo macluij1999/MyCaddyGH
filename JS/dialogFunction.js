@@ -1,3 +1,4 @@
+// dialog.js
 // Get the dialog and buttons
 const dialog = document.getElementById('myDialog');
 const openDialogButton = document.getElementById('open-dialog');
@@ -12,3 +13,7 @@ openDialogButton.addEventListener('click', () => {
 closeDialogButton.addEventListener('click', () => {
     dialog.close(); // Use close() to close the dialog
 });
+
+function closeDialog() {
+    dialog.close();
+}

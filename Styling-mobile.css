@@ -47,7 +47,7 @@
         width: auto;
     }
 
-    .myBag-Table, .addNewClubTable, .playHole-Table, .coursesTable, .editClubSection{
+    .myBag-Table, .playHole-Table, .coursesTable, .editClubSection{
         width: 90vw !important;
         margin-top: 50px !important;
         margin-bottom: 50px !important;
@@ -94,5 +94,9 @@
     #Message, #suggestedClub {
         margin: 0px 0;
         font-size: 18px;
+    }
+    .addNewClubTable{
+        width: 90vw !important;
+        overflow: hidden;
     }
 }
