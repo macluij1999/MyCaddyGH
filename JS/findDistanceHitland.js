@@ -9,14 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const distanceMap = {
         "Hitland par 3 hole 1": { distance: 103, start: { x: 155, y: 20 }, end: { x: 103.27, y: 471.42 } },
         "Hitland par 3 hole 2": { distance: 62, start: { x: 57, y: 110 }, end: { x: 368, y: 131 } },
-        "Hitland par 3 hole 3": { distance: 102, start: { x: 160, y: 30 }, end: { x: 220, y: 240 } },
-        // Add more holes as needed
-        "Hitland par 3 hole 4": { distance: 77, start: { x: 130, y: 60 }, end: { x: 190, y: 230 } },
-        "Hitland par 3 hole 5": { distance: 104, start: { x: 165, y: 10 }, end: { x: 210, y: 240 } },
-        "Hitland par 3 hole 6": { distance: 90, start: { x: 120, y: 50 }, end: { x: 200, y: 230 } },
-        "Hitland par 3 hole 7": { distance: 83, start: { x: 150, y: 20 }, end: { x: 205, y: 215 } },
-        "Hitland par 3 hole 8": { distance: 98, start: { x: 155, y: 30 }, end: { x: 200, y: 220 } },
-        "Hitland par 3 hole 9": { distance: 133, start: { x: 170, y: 25 }, end: { x: 225, y: 255 } }
+        "Hitland par 3 hole 3": { distance: 102, start: { x: 43, y: 47 }, end: { x: 643, y: 98 } },
+        "Hitland par 3 hole 4": { distance: 77, start: { x: 290, y: 35 }, end: { x: 156, y: 426 } },
+        "Hitland par 3 hole 5": { distance: 104, start: { x: 696, y: 192 }, end: { x: 128, y: 130 } },
+        "Hitland par 3 hole 6": { distance: 90, start: { x: 52, y: 53 }, end: { x: 478, y: 157 } },
+        "Hitland par 3 hole 7": { distance: 83, start: { x: 578, y: 267 }, end: { x: 134, y: 132 } },
+        "Hitland par 3 hole 8": { distance: 98, start: { x: 125, y: 654 }, end: { x: 161, y: 122 } },
+        "Hitland par 3 hole 9": { distance: 133, start: { x: 83, y: 763 }, end: { x: 140, y: 131 } }
     };
 
     // Function to set the real-life distance and points based on the image's alt attribute
@@ -35,6 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
             endPoint = null;
             console.error('Hole data not found for', imageAlt);
         }
+
+        // Suggest clubs based on the initial real-life distance
+        suggestClub(realLifeDistance);
     }
 
     setRealLifeDistance(); // Initialize real-life distance and points for the first image
@@ -44,25 +46,78 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function suggestClub(distance) {
-        let closestClub = null;
-        let closestDistance = Infinity;
+        let closestUnderClub = null;
+        let closestOverClub = null;
+        let exactClub = null; // To hold a club that matches the exact distance
+        let smallestUnderDifference = Infinity;
+        let smallestOverDifference = Infinity;
 
         for (let i = 1; localStorage.getItem("club" + i) !== null; i++) {
             const club = JSON.parse(localStorage.getItem("club" + i));
             const clubDistance = parseFloat(club.distance);
 
-            // Ensure the suggested club distance is not less than the calculated distance
-            if (clubDistance >= distance && (clubDistance - distance < closestDistance)) {
-                closestDistance = clubDistance - distance;
-                closestClub = club.type + ' (' + club.distance + ')';
+            // Check for exact match
+            if (clubDistance === distance) {
+                exactClub = club.type + ' (' + club.distance + ')';
+            }
+
+            // Check for closest under the distance
+            if (clubDistance < distance) {
+                const underDifference = distance - clubDistance;
+                if (underDifference < smallestUnderDifference) {
+                    smallestUnderDifference = underDifference;
+                    closestUnderClub = club.type + ' (' + club.distance + ')';
+                }
+            }
+
+            // Check for closest over the distance
+            if (clubDistance > distance) {
+                const overDifference = clubDistance - distance;
+                if (overDifference < smallestOverDifference) {
+                    smallestOverDifference = overDifference;
+                    closestOverClub = club.type + ' (' + club.distance + ')';
+                }
             }
         }
 
-        if (closestClub) {
-            suggestedClubDiv.textContent = 'Suggested club: ' + closestClub;
+        // Build suggestion message based on availability of clubs
+        let suggestionMessage = '';
+
+        if (exactClub) {
+            // If there is an exact match, check which club (above or below) is closer
+            let closestClub = null;
+
+            // Determine which club is closer to the exact match
+            if (closestUnderClub && closestOverClub) {
+                const underDistance = Math.abs(distance - parseFloat(closestUnderClub.match(/\((\d+)\)/)[1]));
+                const overDistance = Math.abs(distance - parseFloat(closestOverClub.match(/\((\d+)\)/)[1]));
+
+                closestClub = (underDistance <= overDistance) ? closestUnderClub : closestOverClub;
+            } else if (closestUnderClub) {
+                closestClub = closestUnderClub;
+            } else if (closestOverClub) {
+                closestClub = closestOverClub;
+            }
+
+            // Construct the suggestion message
+            suggestionMessage += `<text class="distanceHeaders">Suggest club: </text>${exactClub}`;
+            if (closestClub) {
+                suggestionMessage += ` or ${closestClub}`;
+            }
         } else {
-            suggestedClubDiv.textContent = 'No clubs available.';
+            // If there is no exact match, show the closest under and closest over
+            if (closestUnderClub && closestOverClub) {
+                suggestionMessage += `<text class="distanceHeaders">Suggest clubs: </text>${closestUnderClub} or ${closestOverClub}`;
+            } else if (closestUnderClub) {
+                suggestionMessage += `<text class="distanceHeaders">Suggest club: </text>${closestUnderClub}`;
+            } else if (closestOverClub) {
+                suggestionMessage += `<text class="distanceHeaders">Suggest club: </text>${closestOverClub}`;
+            } else {
+                suggestionMessage = 'No clubs available.';
+            }
         }
+
+        suggestedClubDiv.innerHTML = suggestionMessage;
     }
 
     function findDistance(event) {
@@ -88,10 +143,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const scaleFactor = realLifeDistance / calculateDistance(startPoint, endPoint); // Based on the predefined points
             const distanceInMeters = pixelDistance * scaleFactor;
 
+            const pixelDistanceCovered = calculateDistance(clickedPoint, startPoint);
+            const distanceInMetersCovered = pixelDistanceCovered * scaleFactor;
+
             // Log the clicked point and display the real-life distance
             console.log(`Clicked point x: ${clickedPoint.x.toFixed(2)} / y: ${clickedPoint.y.toFixed(2)}`);
-            messageDiv.textContent = 'Real-life distance to end point: ' + distanceInMeters.toFixed(2) + ' meters';
-            
+            messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + 
+                                    '<text class="distanceHeaders">Distance left: </text>' + distanceInMeters.toFixed(2) + ' meters<br>' + 
+                                    '<text class="distanceHeaders">Distance covered: </text>' + distanceInMetersCovered.toFixed(2) + ' meters';
+
             // Suggest the club based on the calculated distance
             suggestClub(distanceInMeters);
         } else {
@@ -108,6 +168,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to re-initialize the real-life distance and step for each new hole
     window.reinitializeFindDistance = function() {
         setRealLifeDistance(); // Update real-life distance and points for the new hole
-        messageDiv.textContent = 'Click on the image to find the distance to the predefined end point.'; // Reset message
+        messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + // Reset message
+                                '<text class="distanceHeaders">Distance left: </text>' + realLifeDistance + ' meters <br>' +
+                                '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
+        suggestClub(realLifeDistance);
+    };
+
+    window.onload = function() {
+        setRealLifeDistance(); // Update real-life distance and points for the new hole
+        messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + // Reset message
+                                '<text class="distanceHeaders">Distance left: </text>' + realLifeDistance + ' meters <br>' +
+                                '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
     };
 });

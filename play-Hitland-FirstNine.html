@@ -6,46 +6,42 @@
     <title>Hitland Eerste 9 holes</title>
     <link rel="stylesheet" href="Styling.css"/>
     <link rel="stylesheet" href="Styling-mobile.css"/>
-    <style>
-        
-        #Message {
-            margin: 20px 0;
-            font-size: 18px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <header>
         <div class="headerbar">
-            <h1 class="Title">My Caddy</h1>
+            <h1 class="Title">
+                My Caddy
+            </h1>
         </div>
         <div class="bottombar">
-            <div class="left_menu">
-                <a href="Mybag.html">
-                    <img src="icons/golfbag.svg" alt="golfbag"/>
-                    <div>My bag</div>
-                </a>
-                <a class="active" href="play.html">
-                    <img src="icons/play.svg" alt="play"/>
-                    <div>Play</div>
-                </a>
-                <a>
-                    <img src="icons/cards.svg" alt="card"/>
-                    <div>My cards</div>
-                </a>
-            </div>
-            <div class="right_menu">
-                <a>My profile</a>
+            <div class="bottombarContent">
+                <div class="left_menu">
+                    <a href="Mybag.html">
+                        <img src="icons/golfbag.svg" alt="golfbag"/>
+                        <div>My bag</div>
+                    </a>
+                    <a class="active" href="play.html">
+                        <img src="icons/play.svg" alt="play"/>
+                        <div>Play</div>
+                    </a>                        
+                    <a>
+                        <img src="icons/cards.svg" alt="card"/>
+                        <div>My cards</div>
+                    </a>
+                </div>
+                <div class="right_menu">
+                    <a>My profile</a>
+                </div>
             </div>                
         </div>
     </header>
     <div class="playHole-Table">
         <div class="playHoleHeader">
-            <div id="Message">Select the middle point as shown on the map, if not available click start point.</div>
+            <div id="Message"></div>
+            <div id="suggestedClub"></div>
         </div>
         <img id="myImage" src="Courses/Hitland-eerste9/hole1.png" alt="Hitland eerste 9 hole 1" />
-        <div id="suggestedClub">Suggest club: Click where your ball landed</div>
         <a class="nextHoleButton" href="#">Next hole</a>
     </div>
     <script type="text/javascript" src="JS/findDistanceHitlandFirstNine.js"> findDistance()</script>

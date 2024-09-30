@@ -21,6 +21,11 @@
         width: 100vw !important;
     }
 
+    .bottombarContent{
+        justify-content: center !important;
+        width: 100vw !important;
+    }
+
     .left_menu{
         height: -webkit-fill-available !important;
         font-size: 11px !important;
@@ -53,7 +58,8 @@
         width: 100%;
         height: auto;
         display: block;
-        margin: 0 auto;    
+        margin: 0 auto;
+        max-height: 80vh !important;  
     }
 
     .MybagTableTitle{
@@ -83,5 +89,10 @@
 
     #clubDistance{
         font-size: 20px !important;
+    }
+
+    #Message, #suggestedClub {
+        margin: 0px 0;
+        font-size: 18px;
     }
 }

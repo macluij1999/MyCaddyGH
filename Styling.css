@@ -31,13 +31,20 @@ h1 {
     background-color: #0F3E58;
     color: #fff;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     font-size: 1.2rem;
     position: fixed;
     bottom: 0;
     overflow: hidden;
     width: 100vw;
+}
+
+.bottombarContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60vw;
 }
 
 .left_menu {
@@ -104,7 +111,6 @@ h1 {
 
 .ClubHeader,
 .addNewClubHeader,
-.playHoleHeader,
 .courseHeader,
 .editClubHeader {
     padding: 0px 10px;
@@ -117,6 +123,12 @@ h1 {
 
 .playHoleHeader {
     width: -webkit-fill-available; /* Can also use width: 100%; for better compatibility */
+    padding: 20px 10px;
+    background-color: var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--white); /* Ensure --white is defined in Colorsheet.css */
 }
 
 .clubContent,
@@ -125,6 +137,7 @@ h1 {
     justify-content: space-between;
     padding: 5px 10px;
     border-bottom: 1px solid var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
+    align-items: center;
 }
 
 .clubContentLeft {
@@ -140,7 +153,7 @@ h1 {
 
 .clubType,
 .courseName {
-    width: max-content;
+    width: -webkit-fill-available;
     font-size: 1.2rem;
     margin: 0px;
 }
@@ -155,6 +168,13 @@ h1 {
 .roundInfo {
     font-size: 1.2rem;
     font-weight: bold;
+}
+
+.clubDistanceField{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
 }
 
 #myImage {
@@ -184,4 +204,13 @@ h1 {
 
 .deleteDialogButtons{
     padding: 5px 10px;
+}
+
+#Message, #suggestedClub {
+    margin: 0px 0;
+    font-size: 18px;
+}
+
+.distanceHeaders{
+    font-weight: bold;
 }

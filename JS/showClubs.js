@@ -49,7 +49,10 @@ function showClubs() {
                     </div>
                 </div>
                 <div class="clubDistanceField">
-                    <div id="clubDistance">${club.distance}</div>
+                    <div id="clubDistance">${club.distance} meters</div>
+                    <div class="editClubButton">
+                        <img class="editClubButtonIcon" src="icons/Go-To.svg" alt="edit club icon"/>
+                    </div>
                 </div>
             </a>
         `;
