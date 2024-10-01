@@ -108,11 +108,13 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--dark-green);
+    margin-top: 5px;
 }
 
 .MybagTableTitle,
 .courseTableHeaderTitle {
-    color: var(--main-darkblue-color); /* Ensure --main-darkblue-color is defined in Colorsheet.css */
+    color: var(--white); /* Ensure --main-darkblue-color is defined in Colorsheet.css */
 }
 
 .addClub {
@@ -205,6 +207,7 @@ h1 {
 .addNewClubDialogbox{
     padding: 0px;
     border: 0px;
+    border-radius: 5px;
 }
 
 .deleteDialogHeader{
@@ -252,6 +255,8 @@ h1 {
 
 .addNewClubSection input{
     width: -webkit-fill-available;
+    font-size: 16px;
+    padding: 0px 5px;
 }
 
 .addNewClubTable{

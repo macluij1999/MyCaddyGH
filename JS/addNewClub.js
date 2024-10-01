@@ -35,3 +35,9 @@ function addNewClub() {
 
     window.location = "Mybag.html";
 }
+
+function clearFields(){
+    document.getElementById("clubTypeInput").value = "";
+    document.getElementById("clubBrandInput").value = "";
+    document.getElementById("clubDistanceInput").value = "";
+}

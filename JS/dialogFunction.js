@@ -11,7 +11,8 @@ openDialogButton.addEventListener('click', () => {
 
 // Close the dialog when the close button is clicked
 closeDialogButton.addEventListener('click', () => {
-    dialog.close(); // Use close() to close the dialog
+    dialog.close();
+    clearFields(); // Use close() to close the dialog
 });
 
 function closeDialog() {

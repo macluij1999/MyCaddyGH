@@ -16,8 +16,8 @@ function displayClubData() {
         clubDiv.innerHTML = `
             <div><h3>Club Type:</h3><input value="${club.type}"></div>
             <div><h3>Club Brand:</h3><input value="${club.brand}"></div>
-            <div><h3>Club Distance:</h3><input value="${club.distance}"></div>
-        `;
+            <div><h3>Club Distance:</h3><input value="${club.distance}"></div>`
+        ;
     } else {
         console.error("No club data found for the specified club.");
     }

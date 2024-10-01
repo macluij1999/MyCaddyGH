@@ -45,7 +45,7 @@
                 <h2 class="MybagTableTitle">My bag</h2>
                 <!-- <a href="addNewClub.html">-->
                     <img id="open-dialog" class="addClub" src="icons/plus.svg" alt="Add new club"/>
-                </a>
+                <!--</a>-->
             </div>
             <div class="ClubHeader">
                 <h2 class="ClubTitle">Club</h2>
@@ -54,7 +54,7 @@
             <div id="showClubs"><script>showClubs()</script></div>
  
         </div>
-
+        <!--Dialog box for adding new club-->
         <dialog id="myDialog" class="addNewClubDialogbox">
             <div class="addNewClubTable">
                 <div class="addNewClubHeader">
@@ -76,11 +76,12 @@
                     </div>
                 </div>
                 <div class="addNewClubButtons">
-                    <button type="button" onclick="closeDialog()" class="addNewClubCancel">Cancel</button>
+                    <button type="button" onclick="closeDialog(); clearFields()" class="addNewClubCancel">Cancel</button>
                     <button type="button" onclick="addNewClub()" class="addNewClubSave">Add new club</button>
                 </div>
             </div>
         </dialog>
+        <!--End Dialog box for new club-->
         <script src="JS/dialogFunction.js"></script>
     </body>
 </html>

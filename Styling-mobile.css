@@ -1,4 +1,4 @@
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 680px) {
     
     h1{
         font-size: 24px !important;
@@ -62,10 +62,6 @@
         max-height: 80vh !important;  
     }
 
-    .MybagTableTitle{
-        font-size: 24px;
-    }
-
     .clubInfo img{
         width: 30px;
         height: auto;
@@ -96,9 +92,14 @@
         font-size: 18px;
     }
 
+    .addNewClubDialogbox{
+        min-width: fit-content !important;
+    }
+
     .addNewClubTable{
         width: 90vw !important;
         overflow: hidden;
+        margin: 0px !important;
     }
 
     .golffield{
