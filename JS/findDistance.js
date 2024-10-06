@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Object to map image alt attributes to real-life distances
     const distanceMap = {
-        "Delfland par 3 hole 1": { distance: 90, start: { x: 212, y: 551 }, end: { x: 172, y: 60 } },
-        "Delfland par 3 hole 2": { distance: 136, start: { x: 27, y: 185 }, end: { x: 231, y: 40 } },
+        "Delfland par 3 hole 1": { distance: 90, start: { x: 343, y: 931 }, end: { x: 213, y: 119 } },
+        "Delfland par 3 hole 2": { distance: 136, start: { x: 36, y: 291 }, end: { x: 1172, y: 224 } },
         "Delfland par 3 hole 3": { distance: 70, start: { x: 18, y: 26 }, end: { x: 196, y: 133 } },
         "Delfland par 3 hole 4": { distance: 105, start: { x: 268, y: 875 }, end: { x: 351, y: 158 } },
         "Delfland par 3 hole 5": { distance: 91, start: { x: 643, y: 20 }, end: { x: 166, y: 273 } },
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function setRealLifeDistance() {
         const imageAlt = document.getElementById('myImage').alt;
         const holeData = distanceMap[imageAlt];
+        const myImage = document.getElementById('myImage');
 
         if (holeData) {
             realLifeDistance = holeData.distance; // Set the real-life distance

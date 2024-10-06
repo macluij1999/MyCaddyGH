@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Distance Calculation</title>
+    <title>MyCaddy - Delfland par 3</title>
     <link rel="stylesheet" href="Styling.css"/>
     <link rel="stylesheet" href="Styling-mobile.css"/>
 </head>
@@ -42,10 +42,13 @@
             <div id="suggestedClub"></div>
         </div>
         <img id="myImage" src="Courses/Delfland-par3/hole1.png" alt="Delfland par 3 hole 1" />
-        <a class="previousHoleButton" href="#">End game</a>
-        <a class="nextHoleButton" href="#">Next hole</a>
+        <div class="holeNavButtons">
+            <button class="previousHoleButton">End game</button>
+            <button class="nextHoleButton" href="#">Next hole</button>
+        </div>
     </div>
     <script type="text/javascript" src="JS/findDistance.js"> findDistance()</script>
     <script type="text/javascript" src="JS/showNextHoleDelfland.js"></script>
+    <script type="text/javascript" src="JS/updateImageSize.js"></script>
 </body>
 </html>

@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Starting and end points (initially null)
     let startPoint = null;
+    let middlePoint = null;
     let endPoint = null;
+    let pointDistance = null;
     let realLifeDistance = 0; // To hold the real-life distance
     let step = 0; // To track state (0: start, 1: end, 2: calculate)
     const messageDiv = document.getElementById('Message');
@@ -9,15 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Object to map image alt attributes to real-life distances
     const distanceMap = {
-        "Hitland eerste 9 hole 1": 156,
-        "Hitland eerste 9 hole 2": 246,
-        "Hitland eerste 9 hole 3": 158,
-        "Hitland eerste 9 hole 4": 148,
-        "Hitland eerste 9 hole 5": 111,
-        "Hitland eerste 9 hole 6": 147,
-        "Hitland eerste 9 hole 7": 148,
-        "Hitland eerste 9 hole 8": 260,
-        "Hitland eerste 9 hole 9": 27
+        "Hitland eerste 9 hole 1": { distance: 300, distancePoint: 156, start: { x: 395, y: 513 }, middle: { x: 794 , y: 252}, end: { x: 1172, y: 533 } },
+        "Hitland eerste 9 hole 2": { distance: 401, distancePoint: 100, start: { x: 349, y: 430 }, middle: { x: 1029 , y: 430}, end: { x: 1209, y: 382 } },
+        "Hitland eerste 9 hole 3": { distance: 102, distancePoint: 155, start: { x: 43, y: 47 }, middle: { x: 0 , y: 100}, end: { x: 643, y: 98 } },
+        "Hitland eerste 9 hole 4": { distance: 77, distancePoint: 156, start: { x: 290, y: 35 }, middle: { x: 0 , y: 100}, end: { x: 156, y: 426 } },
+        "Hitland eerste 9 hole 5": { distance: 104, distancePoint: 156, start: { x: 696, y: 192 }, middle: { x: 0 , y: 100}, end: { x: 128, y: 130 } },
+        "Hitland eerste 9 hole 6": { distance: 90, distancePoint: 156, start: { x: 52, y: 53 }, middle: { x: 0 , y: 100}, end: { x: 478, y: 157 } },
+        "Hitland eerste 9 hole 7": { distance: 83, distancePoint: 156, start: { x: 578, y: 267 }, middle: { x: 0 , y: 100}, end: { x: 134, y: 132 } },
+        "Hitland eerste 9 hole 8": { distance: 98, distancePoint: 156, start: { x: 125, y: 654 }, middle: { x: 0 , y: 100}, end: { x: 161, y: 122 } },
+        "Hitland eerste 9 hole 9": { distance: 133, distancePoint: 156, start: { x: 83, y: 763 }, middle: { x: 0 , y: 100}, end: { x: 140, y: 131 } }
     };
 
     // Function to set the real-life distance and points based on the image's alt attribute
@@ -27,12 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (holeData) {
             realLifeDistance = holeData.distance; // Set the real-life distance
+            pointDistance = holeData.distancePoint; //Set the middle point distance
             startPoint = holeData.start; // Set the predefined start point
+            middlePoint = holeData.middle; // Set the predefined middle point
             endPoint = holeData.end;     // Set the predefined end point
             console.log(`Hole: ${imageAlt}, Start: x=${startPoint.x}, y=${startPoint.y}, End: x=${endPoint.x}, y=${endPoint.y}`);
         } else {
             realLifeDistance = 0; // Default to 0 if not found
+            pointDistance = 0;
             startPoint = null;
+            middlePoint = null;
             endPoint = null;
             console.error('Hole data not found for', imageAlt);
         }
@@ -139,10 +145,10 @@ document.addEventListener('DOMContentLoaded', function() {
             y: (event.clientY - rect.top) * (naturalHeight / rect.height) // Normalize y to the natural image height
         };
 
-        if (endPoint && startPoint) {
+        if (endPoint && middlePoint) {
             // Calculate the distance between the clicked point and the predefined end point
             const pixelDistance = calculateDistance(clickedPoint, endPoint);
-            const scaleFactor = realLifeDistance / calculateDistance(startPoint, endPoint); // Based on the predefined points
+            const scaleFactor = pointDistance / calculateDistance(middlePoint, endPoint); // Based on the predefined points
             const distanceInMeters = pixelDistance * scaleFactor;
 
             const pixelDistanceCovered = calculateDistance(clickedPoint, startPoint);

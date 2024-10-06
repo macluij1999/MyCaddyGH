@@ -194,8 +194,8 @@ h1 {
 }
 
 #myImage {
-    width: 600px; /* Adjust as needed */
-    height: auto;
+    /*width: 600px; /* Adjust as needed */
+    /*height: auto;*/
     border: 1px solid black;
 }
 
@@ -293,4 +293,33 @@ h1 {
 
 .closeIcon{
     padding-right: 5px;
+}
+
+.holeNavButtons{
+    display: flex;
+    flex-direction: row;
+    width: -webkit-fill-available;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.previousHoleButton{
+    background-color: var(--delete-red);
+    width: -webkit-fill-available;
+    border: 0px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--white);
+}
+
+.nextHoleButton{
+    background: var(--main-green);
+    width: -webkit-fill-available;
+    border: 0px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--white);
 }

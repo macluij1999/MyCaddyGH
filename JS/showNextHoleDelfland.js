@@ -33,13 +33,15 @@ function showNextHoleDelfland() {
             // Change button text to "End Game"
             nextHoleButton.textContent = 'End Game';
 
-            // Update the link to go to Mybag.html
-            nextHoleButton.setAttribute('href', 'Mybag.html');
-
             // Optionally, disable further hole updates
             nextHoleButton.removeEventListener('click', showNextHoleDelfland);
+
+            // Update the link to go to Mybag.html
+            nextHoleButton.addEventListener('click', endGame);
         }
     }
+    myImage.addEventListener('load', updateImageSize);
+
 }
 
 // Event listener for the Next Hole button
@@ -93,13 +95,15 @@ function showPreviousHoleDelfland() {
             // Change button text to "End Game"
             previousHoleButton.textContent = 'End Game';
 
-            // Update the link to go to Mybag.html
-            previousHoleButton.setAttribute('href', 'Mybag.html');
-
             // Optionally, disable further hole updates
             previousHoleButton.removeEventListener('click', showPreviousHoleDelfland);
+
+            // Update the link to go to Mybag.html
+            nextHoleButton.addEventListener('click', endGame);
         }
     }
+    myImage.addEventListener('load', updateImageSize);
+
 }
 
 function showHoleDelflandButtonUpdate() {
@@ -136,3 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // If it's "End Game", allow the default behavior to follow the link
     });
 });
+
+function endGame(){
+    location.href = 'Mybag.html';
+}

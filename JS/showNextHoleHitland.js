@@ -40,6 +40,8 @@ function showNextHoleHitland() {
             nextHoleButton.removeEventListener('click', showNextHoleHitland);
         }
     }
+    myImage.addEventListener('load', updateImageSize);
+
 }
 
 // Event listener for the Next Hole button
@@ -100,6 +102,8 @@ function showPreviousHoleHitland() {
             previousHoleButton.removeEventListener('click', showPreviousHoleHitland);
         }
     }
+    myImage.addEventListener('load', updateImageSize);
+
 }
 
 function showHoleHitlandButtonUpdate() {
