@@ -39,8 +39,10 @@ function showClubs() {
         const club = clubItem.clubData; // De club gegevens
         const clubKey = clubItem.key;   // De originele localStorage key (bijv. "club3")
 
-        let clubHTML = `
-            <a href="editClub.html?club=${clubKey}" class="clubContent club${index + 1}">
+        let clubHTML = 
+           // <a href="editClub.html?club=${clubKey}" class="clubContent club${index + 1}">
+               `
+               <div id="open-dialog-${clubKey}" class="clubContent club${index + 1}">
                 <div class="clubContentLeft">
                     <img src="icons/golfclub.svg" alt="golfclub"/>
                     <div class="clubInfo">
@@ -54,7 +56,7 @@ function showClubs() {
                         <img class="editClubButtonIcon" src="icons/Go-To.svg" alt="edit club icon"/>
                     </div>
                 </div>
-            </a>
+            </div>
         `;
         
         // Voeg de HTML van deze club toe aan de totale HTML

@@ -89,8 +89,7 @@ function showPreviousHoleDelfland() {
         } else {
             console.error("reinitializeFindDistance function is not defined");
         }
-
-        // Check if it's the last hole (9th hole)
+        // Check if it's the first hole (1st hole)
         if (currentHole === 1) {
             // Change button text to "End Game"
             previousHoleButton.textContent = 'End Game';
@@ -99,7 +98,7 @@ function showPreviousHoleDelfland() {
             previousHoleButton.removeEventListener('click', showPreviousHoleDelfland);
 
             // Update the link to go to Mybag.html
-            nextHoleButton.addEventListener('click', endGame);
+            previousHoleButton.addEventListener('click', endGame);
         }
     }
     myImage.addEventListener('load', updateImageSize);
@@ -144,3 +143,15 @@ document.addEventListener('DOMContentLoaded', function() {
 function endGame(){
     location.href = 'Mybag.html';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const myImage = document.getElementById('myImage');
+    const previousHoleButton = document.querySelector('.previousHoleButton');
+
+    // Extract current hole number from the image source using regex
+    let currentHole = parseInt(myImage.src.match(/hole(\d+)/)[1]);
+    showPreviousHoleDelfland();
+    console.log(`showPreviousHoleDelfland fired ${currentHole}`);
+    //showHoleDelflandButtonUpdate();
+    //console.log("showHoleDelflandButtonUpdate fired");
+});

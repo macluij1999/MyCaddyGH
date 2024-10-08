@@ -6,12 +6,14 @@
     <title>MyCaddy</title>
         <link rel="stylesheet" href="Styling-mobile.css"/>
         <link rel="stylesheet" href="Styling.css"/>
+        <link rel="icon" type="image/x-icon" href="icons/golfbag.svg"/>
 
-        <script type="text/javascript" src="JS/driverDistance.js"></script>
+        <!-- NOT USED ANYMORE <script type="text/javascript" src="JS/driverDistance.js"></script>-->
         <script type="text/javascript" src="JS/showClubs.js"></script>
         <script type="text/javascript" src="JS/addNewClub.js"></script>
     </head>
     <body>
+        <!--Static header and bottom bar-->
         <header>
             <div class="headerbar">
                 <h1 class="Title">
@@ -52,8 +54,8 @@
                 <h2 class="ClubTitle">Club</h2>
                 <h2 class="DistanceTitle">Distance</h2>
             </div>
+            <!--load in the clubs using javascript-->
             <div id="showClubs"><script>showClubs()</script></div>
- 
         </div>
         <!--Dialog box for adding new club-->
         <dialog id="myDialog" class="addNewClubDialogbox">
@@ -83,6 +85,49 @@
             </div>
         </dialog>
         <!--End Dialog box for new club-->
+        <!--Dialog box for editing club-->
+        <dialog id="myDialogEditClub" class="editClubDialogbox">
+            <div class="editClubTable">
+                <div class="editClubHeader">
+                    <h2 class="editClubTitle">Edit club</h2>
+                    <img src="icons/close.svg" id="close-dialog-editclub" class="closeIcon"/>
+                </div>
+                <div class="editClubSection">
+                    <div>
+                        <h3>Club type</h3>
+                        <input type="text" id="clubTypeEdit"/>
+                    </div>
+                    <div>
+                        <h3>Club brand</h3>
+                        <input type="text" id="clubBrandEdit"/>
+                    </div>
+                    <div>
+                        <h3>Club distance</h3>
+                        <input type="number" id="clubDistanceEdit"/>
+                    </div>
+                </div>
+                <div class="editClubButtons">
+                    <button type="button" id="open-dialog-delete-club" class="deleteClubButton">Delete club</button>
+                    <button type="button" onclick="" class="editClubSave">Save club</button>
+                </div>
+            </div>
+        </dialog>
+        <!--End Dialog box for editing club-->
+        <!--Dialog box for deleting editing club-->
+        <dialog id="myDialogDeleteClub" class="deleteDialogBox">
+            <div class="deleteDialogHeader">
+                <h2>Delete club</h2>
+            </div>
+            <div class="deleteDialogText">
+                <p>Are you sure you want to delete this club? You can't undo this action</p>
+            </div>
+            <div class="deleteDialogButtons">
+                <button id="close-dialog-delete-club">Cancel</button>
+                <button onclick="deleteClub()">Confirm action</button>
+            </div>
+        </dialog>
         <script src="JS/dialogFunction.js"></script>
+        <script src="JS/editClubDialog.js"></script>
+        <!--<script src="JS/deleteClub.js"></script>-->
     </body>
 </html>

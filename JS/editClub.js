@@ -1,3 +1,4 @@
+//NOT USED ANYMORE, DELETE SOON
 // Function to get URL parameters
 function getQueryParameter(param) {
     const urlParams = new URLSearchParams(window.location.search);
