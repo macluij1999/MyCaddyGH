@@ -47,7 +47,7 @@
         width: auto;
     }
 
-    .myBag-Table, .playHole-Table, .coursesTable, .editClubSection{
+    .myBag-Table, .playHole-Table, .coursesTable, .editClubTable, .myScorecard-Table{
         width: 90vw !important;
         margin-top: 50px !important;
         margin-bottom: 50px !important;
@@ -92,11 +92,11 @@
         font-size: 18px;
     }
 
-    .addNewClubDialogbox{
+    .addNewClubDialogbox, .editClubDialogbox{
         min-width: fit-content !important;
     }
 
-    .addNewClubTable{
+    .addNewClubTable, .editClubTable{
         width: 90vw !important;
         overflow: hidden;
         margin: 0px !important;
@@ -105,5 +105,19 @@
     .golffield{
         bottom: 34px !important;
         width: 60vw !important;
+    }
+
+    .scoreCardCourseInfo{
+        display: flex;
+        flex-direction: row;
+        width: 50% !important;
+        justify-content: space-between;
+    }
+    
+    .scoreCardContentLeft{
+        display: flex;
+        flex-direction: row;
+        width: 50% !important;
+        justify-content: space-between;
     }
 }

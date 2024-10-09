@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const messageDiv = document.getElementById('Message');
     const suggestedClubDiv = document.getElementById('suggestedClub');
 
+    // Declare previousClickpoint globally
+    let previousClickpoint = null; // To hold the previous clicked point
+
     // Object to map image alt attributes to real-life distances
     const distanceMap = {
         "Delfland par 3 hole 1": { distance: 90, start: { x: 343, y: 931 }, end: { x: 213, y: 119 } },
@@ -155,30 +158,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Suggest the club based on the calculated distance
             suggestClub(distanceInMeters);
+
+            window.distanceInMetersCovered = distanceInMetersCovered; //Set the distanceInMeters as global const so it can be used in scoreCardAddstroke.jss
+            // Only calculate the distance if previousClickpoint is set
+            if (previousClickpoint) {
+                const pixelDistanceBetweenShots = calculateDistance(previousClickpoint, clickedPoint);
+                const distanceBetweenShots = pixelDistanceBetweenShots * scaleFactor;
+                window.distanceBetweenShots = distanceBetweenShots.toFixed(2);
+                console.log(`Distance between shots: ${distanceBetweenShots.toFixed(2)} meters`);
+            }
+
+            // Update previousClickpoint for the next click
+            previousClickpoint = clickedPoint; // Update previousClickpoint to the current clicked point
         } else {
             messageDiv.textContent = 'Start and end points are not set properly.';
         }
     }
 
-    // Attach the click event listener to the image
-    document.getElementById('myImage').addEventListener('click', findDistance);
-
-    // Expose findDistance globally to be accessible in other scripts
-    window.findDistance = findDistance;
-
-    // Function to re-initialize the real-life distance and step for each new hole
-    window.reinitializeFindDistance = function() {
-        setRealLifeDistance(); // Update real-life distance and points for the new hole
-        messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + // Reset message
-                                '<text class="distanceHeaders">Distance left: </text>' + realLifeDistance + ' meters <br>' +
-                                '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
-        suggestClub(realLifeDistance);
-    };
-
-    window.onload = function() {
-        setRealLifeDistance(); // Update real-life distance and points for the new hole
-        messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + // Reset message
-                                '<text class="distanceHeaders">Distance left: </text>' + realLifeDistance + ' meters <br>' +
-                                '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
-    };
+    // Attach click event listener to the image
+    const myImage = document.getElementById('myImage');
+    myImage.addEventListener('click', findDistance);
 });

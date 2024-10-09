@@ -86,7 +86,9 @@ h1 {
 
 .myBag-Table,
 .playHole-Table,
-.coursesTable{
+.coursesTable,
+.myScorecard-Table,
+.scoreCardTable{
     width: 60vw;
     margin: auto;
     background-color: var(--white);
@@ -102,7 +104,8 @@ h1 {
 }
 
 .tableHeader,
-.courseTableHeader {
+.courseTableHeader,
+.scoreCard-TableHeader {
     padding: 0px 10px;
     display: flex;
     justify-content: space-between;
@@ -112,7 +115,9 @@ h1 {
 }
 
 .MybagTableTitle,
-.courseTableHeaderTitle {
+.courseTableHeaderTitle,
+.myScorecardTableTitle,
+.scoreCardTitle {
     color: var(--white); /* Ensure --main-darkblue-color is defined in Colorsheet.css */
 }
 
@@ -123,7 +128,8 @@ h1 {
 .ClubHeader,
 .addNewClubHeader,
 .courseHeader,
-.editClubHeader {
+.editClubHeader,
+.scoreCardHeader {
     padding: 0px 10px;
     background-color: var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
     display: flex;
@@ -143,7 +149,8 @@ h1 {
 }
 
 .clubContent,
-.courseListItem {
+.courseListItem,
+.scoreCardContent {
     display: flex;
     justify-content: space-between;
     padding: 5px 10px;
@@ -294,13 +301,17 @@ h1 {
     padding-right: 5px;
 }
 
-.holeNavButtons{
+.holeNavButtons, .scorecardButtons{
     display: flex;
     flex-direction: row;
     width: -webkit-fill-available;
     justify-content: center;
     margin-top: 10px;
     gap: 10px;
+}
+
+.scorecardButtons{
+    border-bottom: 2px solid var(--main-green);
 }
 
 .previousHoleButton{
@@ -321,4 +332,64 @@ h1 {
     border-radius: 5px;
     font-size: 16px;
     color: var(--white);
+}
+
+.addStrokeButton{
+    background: var(--main-darkblue-color);
+    width: -webkit-fill-available;
+    border: 0px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.addPuttButton{
+    background: var(--main-light-blue);
+    width: -webkit-fill-available;
+    border: 0px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--white);
+}
+
+.scoreCardCourseInfo{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    justify-content: space-between;
+}
+
+.scoreCardContentLeft{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    justify-content: space-between;
+}
+
+.scoreCardPlayedContent{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
+}
+
+.holeTitle{
+    background: var(--main-green);
+    padding: 5px 10px;
+    color: var(--white);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.strokeInfo{
+    display: flex;
+    flex-direction: row;
+    width: -webkit-fill-available;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--main-green);
 }
