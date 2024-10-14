@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Declare previousClickpoint globally
     let previousClickpoint = null; // To hold the previous clicked point
+    let lastRedDot = null; // Variable to store the last created red dot
 
     // Updated distance map with real-life distance, start point, and end point for each hole
     const distanceMap = {
@@ -123,6 +124,26 @@ document.addEventListener('DOMContentLoaded', function() {
     
             suggestedClubDiv.innerHTML = suggestionMessage;
         }
+
+        function createRedDot(x, y) {
+            if (lastRedDot) {
+                lastRedDot.remove(); // Remove the previous dot
+            }
+        
+            const dot = document.createElement('div');
+            dot.style.width = '10px';
+            dot.style.height = '10px';
+            dot.style.backgroundColor = 'red';
+            dot.style.borderRadius = '50%';
+            dot.style.position = 'absolute';
+            dot.style.left = `${x - 5}px`; // Centering the dot horizontally
+            dot.style.top = `${y - 5}px`;  // Centering the dot vertically
+            dot.style.pointerEvents = 'none'; // Prevent interference with clicks
+        
+            document.body.appendChild(dot);
+            lastRedDot = dot; // Update the reference to the last dot
+        }
+        
     
         function findDistance(event) {
             // Get the image element
@@ -170,6 +191,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 // Update previousClickpoint for the next click
                 previousClickpoint = clickedPoint; // Update previousClickpoint to the current clicked point
+
+                // Compensate for scrolling by using scrollX and scrollY
+                const dotX = rect.left + (clickedPoint.x / naturalWidth) * rect.width + window.scrollX;
+                const dotY = rect.top + (clickedPoint.y / naturalHeight) * rect.height + window.scrollY;
+                createRedDot(dotX, dotY); // Place the red dot at the correct position
+
             } else {
                 messageDiv.textContent = 'Start and end points are not set properly.';
             }

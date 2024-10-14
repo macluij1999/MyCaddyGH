@@ -21,6 +21,7 @@ a {
     top: 0;
     overflow: hidden;
     width: 100vw;
+    z-index: 10;
 }
 
 h1 {
@@ -39,6 +40,7 @@ h1 {
     overflow: hidden;
     width: 100vw;
     height: 90px;;
+    z-index: 10;
 }
 
 .bottombarContent{

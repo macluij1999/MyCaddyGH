@@ -76,5 +76,26 @@ function deleteScoreCard() {
     window.location.href='myCards.html';
 }
 
+// Function to open the delete confirmation dialog
+function openDeleteScoreCardDialog() {
+    document.getElementById('myDialogDeleteScoreCard').showModal();
+}
+
+// Function to close the delete confirmation dialog
+function closeDeleteScoreCardDialog() {
+    document.getElementById('myDialogDeleteScoreCard').close();
+}
+
+// Add event listeners when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+
+
+    // Add event listener to close the delete confirmation dialog
+    const closeDeleteButton = document.getElementById('close-dialog-delete-scoreCard');
+    if (closeDeleteButton) {
+        closeDeleteButton.addEventListener('click', closeDeleteScoreCardDialog);
+    }
+});
+
 // Call the function to display the scorecard when the page loads
 window.onload = displayScoreCardData;

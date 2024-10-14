@@ -1,6 +1,7 @@
 // scoreCardAddStroke.js
 let scoreCardSet = 0; // Keep track of the scorecard count
 let formattedCustomDate; // Declare it outside the function to make it accessible
+let currentNotification; // Variable to keep track of the current notification
 
 const addStrokeButton = document.getElementById('addStrokeButton');
 const addPuttButton = document.getElementById('addPuttButton'); // New button for putts
@@ -47,7 +48,6 @@ addStrokeButton.addEventListener('click', function () {
 
     // Add the stroke to the current hole based on the image alt
     addStrokeToHole(currentHole, 'stroke'); // Specify type as 'stroke'
-    
 });
 
 // Event listener for the addPuttButton
@@ -131,7 +131,47 @@ function addStrokeToHole(holeName, strokeType) {
         localStorage.setItem(scoreCardKey, JSON.stringify(scoreCard));
 
         console.log('Updated Scorecard:', scoreCard);
+
+        // Show the notification with the added stroke and distance
+        if(strokeType !== 'putt'){
+            showNotification(`Added stroke (${strokeDistance} meters)`);
+        }
+        if(strokeType === 'putt'){
+            showNotification(`Added putt`);
+        }
     } else {
         console.error('Scorecard not found in localStorage.');
     }
+}
+
+// Function to show a notification
+function showNotification(message) {
+    // Remove the previous notification if it exists
+    if (currentNotification) {
+        currentNotification.remove();
+    }
+
+    // Create a notification div
+    currentNotification = document.createElement('div');
+    currentNotification.innerText = message;
+    currentNotification.style.width = 'fit-content';
+    currentNotification.style.position = 'fixed';
+    currentNotification.style.top = '40px';
+    currentNotification.style.left = '50%';
+    currentNotification.style.transform = 'translateX(-50%)';
+    currentNotification.style.backgroundColor = 'var(--notify-green)';
+    currentNotification.style.color = 'var(--white)';
+    currentNotification.style.padding = '10px 20px';
+    currentNotification.style.borderRadius = '5px';
+    currentNotification.style.fontSize = '14px';
+    currentNotification.style.zIndex = '1000';
+    
+    // Append the notification to the body
+    document.body.appendChild(currentNotification);
+
+    // Remove the notification after 5 seconds
+    setTimeout(() => {
+        currentNotification.remove();
+        currentNotification = null; // Reset the current notification variable
+    }, 5000);
 }
