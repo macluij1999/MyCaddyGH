@@ -178,4 +178,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Attach click event listener to the image
     const myImage = document.getElementById('myImage');
     myImage.addEventListener('click', findDistance);
+
+    window.reinitializeFindDistance = function() {
+        setRealLifeDistance(); // Update real-life distance and points for the new hole
+        messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + // Reset message
+                                '<text class="distanceHeaders">Distance left: </text>' + realLifeDistance + ' meters <br>' +
+                                '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
+        suggestClub(realLifeDistance);
+    };
+
+    window.onload = function() {
+        setRealLifeDistance(); // Update real-life distance and points for the new hole
+        messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + // Reset message
+                                '<text class="distanceHeaders">Distance left: </text>' + realLifeDistance + ' meters <br>' +
+                                '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
+    };
 });

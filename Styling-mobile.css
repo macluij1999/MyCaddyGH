@@ -47,10 +47,16 @@
         width: auto;
     }
 
-    .myBag-Table, .playHole-Table, .coursesTable, .editClubTable, .myScorecard-Table, .scoreCardTable{
+    .myBag-Table, .playHole-Table, .coursesTable, .editClubTable, .myScorecard-Table, .scoreCardFullContent{
         width: 90vw !important;
         margin-top: 50px !important;
         margin-bottom: 50px !important;
+        overflow: hidden;
+    }
+
+    .scoreCardTable{
+        width: 90vw !important;
+        margin-top: 50px !important;
         overflow: hidden;
     }
 
@@ -119,5 +125,9 @@
         flex-direction: row;
         width: 50% !important;
         justify-content: space-between;
+    }
+
+    .deleteScoreCardButton{
+        width: 30vw !important;
     }
 }

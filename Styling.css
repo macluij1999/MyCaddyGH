@@ -88,12 +88,20 @@ h1 {
 .playHole-Table,
 .coursesTable,
 .myScorecard-Table,
-.scoreCardTable{
+.scoreCardFullContent{
     width: 60vw;
     margin: auto;
     background-color: var(--white);
     margin-top: 6rem;
     margin-bottom: 6rem;
+    overflow-y: auto;
+}
+
+.scoreCardTable{
+    width: 60vw;
+    margin: auto;
+    background-color: var(--white);
+    margin-top: 6rem;
     overflow-y: auto;
 }
 
@@ -290,6 +298,18 @@ h1 {
 }
 
 .addNewClubCancel, .deleteClubButton{
+    background-color: var(--delete-red);
+}
+
+.deleteScoreCardButton{
+    width: 10vw;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--white);
+    border: 0px;
+    margin: 5px 10px;
+    border-radius: 5px;
     background-color: var(--delete-red);
 }
 

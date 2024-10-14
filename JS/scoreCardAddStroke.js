@@ -25,7 +25,7 @@ addStrokeButton.addEventListener('click', function () {
         const minutes = String(currentDate.getMinutes()).padStart(2, '0');
 
         // Format date without seconds
-        formattedCustomDate = `${year}-${month}-${day} ${hours}:${minutes}`; // Set formattedCustomDate here
+        formattedCustomDate = `${day}-${month}-${year} ${hours}:${minutes}`; // Set formattedCustomDate here
 
         // Create the initial scorecard object
         const scoreCard = {
@@ -47,6 +47,7 @@ addStrokeButton.addEventListener('click', function () {
 
     // Add the stroke to the current hole based on the image alt
     addStrokeToHole(currentHole, 'stroke'); // Specify type as 'stroke'
+    
 });
 
 // Event listener for the addPuttButton

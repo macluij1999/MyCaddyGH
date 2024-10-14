@@ -68,5 +68,13 @@ function displayScoreCardData() {
     }
 }
 
+function deleteScoreCard() {
+    const scoreCardKey = getQueryParameter('scoreCard');
+    const scoreCardData = localStorage.getItem(scoreCardKey);
+
+    localStorage.removeItem(scoreCardKey);
+    window.location.href='myCards.html';
+}
+
 // Call the function to display the scorecard when the page loads
 window.onload = displayScoreCardData;

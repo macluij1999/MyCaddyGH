@@ -70,7 +70,8 @@ function showPreviousHoleDelfland() {
     
     if (currentHole > 1) {
         currentHole = currentHole - 1; // decrement the hole number
-
+        console.log('currentHole > 1');
+        
         // Update the image source and alt text with the new hole number
         myImage.src = `Courses/Delfland-par3/hole${currentHole}.png`;
         myImage.alt = `Delfland par 3 hole ${currentHole}`;
@@ -115,12 +116,23 @@ function showHoleDelflandButtonUpdate() {
     if (currentHole > 1  ){
         previousHoleButton.textContent = 'Previous hole';
         previousHoleButton.setAttribute('href', "#");
-        previousHoleButton.removeEventListener('click' , showPreviousHoleDelfland)
+        previousHoleButton.removeEventListener('click' , showPreviousHoleDelfland);
+        previousHoleButton.removeEventListener('click', endGame);
     }
     if (currentHole < 9){
         nextHoleButton.textContent = 'Next hole';
         nextHoleButton.setAttribute('href', '#');
         nextHoleButton.removeEventListener('click', showNextHoleDelfland);
+    }
+    if (currentHole === 1) {
+        // Change button text to "End Game"
+        previousHoleButton.textContent = 'End Game';
+
+        // Optionally, disable further hole updates
+        previousHoleButton.removeEventListener('click', showPreviousHoleDelfland);
+
+        // Update the link to go to Mybag.html
+        previousHoleButton.addEventListener('click', endGame);
     }
 }
 
@@ -152,6 +164,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentHole = parseInt(myImage.src.match(/hole(\d+)/)[1]);
     showPreviousHoleDelfland();
     console.log(`showPreviousHoleDelfland fired ${currentHole}`);
-    //showHoleDelflandButtonUpdate();
-    //console.log("showHoleDelflandButtonUpdate fired");
+    showHoleDelflandButtonUpdate();
+    console.log("showHoleDelflandButtonUpdate fired");
 });
