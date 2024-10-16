@@ -56,7 +56,6 @@
 
     .scoreCardTable{
         width: 90vw !important;
-        margin-top: 50px !important;
         overflow: hidden;
     }
 
@@ -102,7 +101,7 @@
         min-width: fit-content !important;
     }
 
-    .addNewClubTable, .editClubTable{
+    .addNewClubTable, .editClubTable, .deleteScoreCardTable, .activeRoundTable{
         width: 90vw !important;
         overflow: hidden;
         margin: 0px !important;
@@ -129,5 +128,10 @@
 
     .deleteScoreCardButton{
         width: 30vw !important;
+    }
+
+    #showScoreCard h3{
+        font-size: 16px;
+        font-weight: bold;
     }
 }

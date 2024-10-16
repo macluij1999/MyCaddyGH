@@ -84,7 +84,7 @@
                 </div>
                 <div class="editClubButtons">
                     <button type="button" id="open-dialog-delete-club" class="deleteClubButton">Delete club</button>
-                    <button type="button" onclick="" class="editClubSave">Save club</button>
+                    <button type="button" onclick="editClub()" class="editClubSave">Save club</button>
                 </div>
             </div>
         </dialog>
@@ -98,8 +98,8 @@
                 <p>Are you sure you want to delete this club? You can't undo this action</p>
             </div>
             <div class="deleteDialogButtons">
-                <button id="close-dialog-delete-club">Cancel</button>
-                <button onclick="deleteClub()">Confirm action</button>
+                <button id="close-dialog-delete-club" class="cancelDeleteDialogBox">Cancel</button>
+                <button onclick="deleteClub()" class="confirmDeleteDialogBox">Delete club</button>
             </div>
         </dialog>
         <script src="JS/dialogFunction.js"></script>

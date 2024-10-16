@@ -15,14 +15,39 @@
     </header>
     <div class="playHole-Table">
         <div class="playHoleHeader">
-            <div id="Message"></div>
+            <div id="Message">Click where your ball landed</div>
             <div id="suggestedClub"></div>
         </div>
-        <img id="myImage" src="Courses/Hitland-eerste9/hole1.png" alt="Hitland eerste 9 hole 1" />
-        <a class="previousHoleButton" href="#">End game</a>
-        <a class="nextHoleButton" href="#">Next hole</a>
+        <img id="myImage" src="Courses/Hitland-eerste9/hole1.png" alt="Hitland eerste 9 hole 1" style="width: -webkit-fill-available;"/>
+        <div class="scorecardButtons">
+            <button id="addStrokeButton" class="addStrokeButton">Add stroke</button>
+            <button id="addPuttButton" class="addPuttButton">Add putt</button>
+        </div>
+        <div class="holeNavButtons">
+            <button class="previousHoleButton" href="#">End game</button>
+            <button class="nextHoleButton" href="#">Next hole</button>
+        </div>
     </div>
+     <!--Dialog box for active round-->
+     <dialog id="myDialogActiveRound" class="activeRoundDialogbox">
+        <div class="activeRoundTable">
+            <div class="activeRoundHeader">
+                <h2 class="activeRoundTitle">You have an active round</h2>
+            </div>
+            <div id="activeRoundSection" class="activeRoundSection">
+                <!--filled by the function-->
+            </div>
+            <div class="activeRoundButtons">
+                <button type="button" id="stopActiveRoundButton" class="stopActiveRoundButton">Start new round</button>
+                <button type="button" id="continueActiveRoundButton" class="continueActiveRoundButton">Continue round</button>
+            </div>
+        </div>
+    </dialog>
+    <!--End Dialog box for active round-->
     <script type="text/javascript" src="JS/findDistanceHitlandFirstNine.js"> findDistance()</script>
     <script type="text/javascript" src="JS/showNextHoleHitlandFirstNine.js"></script>
+    <script type="text/javascript" src="JS/updateImageSize.js"></script>
+    <script type="text/javascript" src="JS/scoreCardAddStroke.js"></script>
+    <script type="text/javascript" src="JS/checkActiveRound.js"></script>
 </body>
 </html>

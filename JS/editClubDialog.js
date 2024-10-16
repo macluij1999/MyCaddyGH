@@ -43,6 +43,30 @@ function closeDeleteClubDialog() {
     document.getElementById('myDialogDeleteClub').close();
 }
 
+//function to edit the club in localStorage
+function editClub(){
+
+    if (currentClubId){
+        const typeInput = document.getElementById('clubTypeEdit').value;
+        const brandInput = document.getElementById('clubBrandEdit').value;
+        const distanceInput = document.getElementById('clubDistanceEdit').value;
+
+        // Update the club object with new values
+        club = {
+            type : typeInput,
+            brand : brandInput,
+            distance : distanceInput
+        }
+        // Save the updated club data back to localStorage
+        localStorage.setItem(currentClubId, JSON.stringify(club));
+
+        // Optionally, show a success message
+        window.location.href = 'Mybag.html';
+    } else {
+        console.error("No club data found for the specified club.");
+    }
+}
+
 // Function to delete the club from localStorage
 function deleteClub() {
     if (currentClubId) {

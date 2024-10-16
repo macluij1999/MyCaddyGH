@@ -73,7 +73,15 @@ function deleteScoreCard() {
     const scoreCardData = localStorage.getItem(scoreCardKey);
 
     localStorage.removeItem(scoreCardKey);
+    
+    const resetActiveRound = {
+        value: 'false',
+        key: 'no active round'
+    }
+    localStorage.setItem('activeRound', JSON.stringify(resetActiveRound));
+
     window.location.href='myCards.html';
+
 }
 
 // Function to open the delete confirmation dialog

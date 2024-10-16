@@ -14,8 +14,12 @@ addStrokeButton.addEventListener('click', function () {
     const scoreCardRound = playingCourseWords.slice(1, 3).join(' ');
     const currentHole = playingCourseWords.slice(3).join(' '); // Get the current hole from image alt (e.g., 'hole1')
 
+    const activeRoundLocal = localStorage.getItem('activeRound');
+    const activeRoundCheck = JSON.parse(activeRoundLocal);
+
+
     // Check if a scorecard has already been created
-    if (scoreCardSet < 1) {
+    if (activeRoundLocal === null || activeRoundCheck.active != 'true') {
         console.log('Creating a new scorecard');
         const currentDate = new Date();
 
@@ -40,8 +44,17 @@ addStrokeButton.addEventListener('click', function () {
         scoreCardSet = getScoreCardCount() + 1; // Get the count and increment by 1
 
         // Store the scorecard in localStorage with the new key format
-        const scoreCardKey = `Scorecard ${scoreCardSet}: ${scoreCard.Title} ${scoreCard.Round} ${scoreCard.Date}`;
+        const scoreCardKey = `Scorecard ${scoreCardSet}: ${scoreCard.Title} ${scoreCard.Round} (${scoreCard.Date})`;
         localStorage.setItem(scoreCardKey, JSON.stringify(scoreCard));
+
+        const activeRound = {
+            active: 'true',
+            key: scoreCardKey,
+            holeAlt: document.getElementById('myImage').alt,
+            holeSrc: document.getElementById('myImage').src
+        }
+        
+        localStorage.setItem('activeRound', JSON.stringify(activeRound));
     } else {
         console.log('Scorecard already created');
     }
@@ -79,8 +92,12 @@ function addStrokeToHole(holeName, strokeType) {
     const scoreCardTitle = playingCourseWords.slice(0, 1).join(' ');
     const scoreCardRound = playingCourseWords.slice(1, 3).join(' ');
 
+    const activeRoundLocal = localStorage.getItem('activeRound');
+    const activeRoundCheck = JSON.parse(activeRoundLocal);
+
+
     // Determine the current scorecard key
-    const scoreCardKey = `Scorecard ${scoreCardSet}: ${scoreCardTitle} ${scoreCardRound} ${formattedCustomDate}`;
+    const scoreCardKey = activeRoundCheck.key;
 
     // Retrieve the scorecard from localStorage
     let scoreCard = localStorage.getItem(scoreCardKey);
@@ -112,9 +129,10 @@ function addStrokeToHole(holeName, strokeType) {
             strokeDistance = null; // or use: strokeDistance = ''; if you prefer an empty string
         } else {
             // For strokes
-            if (strokesInHole === 1) {
+            if (strokesInHole === 1 || scoreCardSet < 1) {
                 // For the first stroke, use distanceCoveredInMeters
                 strokeDistance = distanceCoveredInMeters.toFixed(2);
+                scoreCardSet = 3;
             } else {
                 // For subsequent strokes, calculate distanceBetweenShots (assuming you have this value)
                 strokeDistance = distanceBetweenShots; // Ensure this value is defined somewhere
@@ -142,7 +160,17 @@ function addStrokeToHole(holeName, strokeType) {
     } else {
         console.error('Scorecard not found in localStorage.');
     }
+    updateActiveRound();
 }
+
+function updateActiveRound(){
+    let scoreCard = localStorage.getItem('activeRound');
+    let scoreCardParse = JSON.parse(scoreCard);
+    scoreCardParse.holeAlt = document.getElementById('myImage').alt;
+    scoreCardParse.holeSrc = document.getElementById('myImage').src;
+    localStorage.setItem('activeRound', JSON.stringify(scoreCardParse));
+}
+
 
 // Function to show a notification
 function showNotification(message) {

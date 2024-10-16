@@ -41,7 +41,6 @@ function showNextHoleDelfland() {
         }
     }
     myImage.addEventListener('load', updateImageSize);
-
 }
 
 // Event listener for the Next Hole button
@@ -103,7 +102,6 @@ function showPreviousHoleDelfland() {
         }
     }
     myImage.addEventListener('load', updateImageSize);
-
 }
 
 function showHoleDelflandButtonUpdate() {
@@ -118,6 +116,7 @@ function showHoleDelflandButtonUpdate() {
         previousHoleButton.setAttribute('href', "#");
         previousHoleButton.removeEventListener('click' , showPreviousHoleDelfland);
         previousHoleButton.removeEventListener('click', endGame);
+        console.log(`showHolwDelflandButtonUpdate: currentHole > 1`);
     }
     if (currentHole < 9){
         nextHoleButton.textContent = 'Next hole';
@@ -154,6 +153,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function endGame(){
     location.href = 'Mybag.html';
+
+    const activeRound = {
+        active: 'false',
+        key: 'not playing'
+    }
+    
+    localStorage.setItem('activeRound', JSON.stringify(activeRound));
 }
 
 document.addEventListener('DOMContentLoaded', function() {

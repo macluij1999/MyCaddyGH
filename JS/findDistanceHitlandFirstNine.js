@@ -9,11 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const messageDiv = document.getElementById('Message');
     const suggestedClubDiv = document.getElementById('suggestedClub');
 
+    let previousClickpoint = null; 
     let lastRedDot = null; // Variable to store the last created red dot
 
     // Object to map image alt attributes to real-life distances
     const distanceMap = {
-        "Hitland eerste 9 hole 1": { distance: 300, distancePoint: 156, start: { x: 395, y: 513 }, middle: { x: 794 , y: 252}, end: { x: 1172, y: 533 } },
+        "Hitland eerste 9 hole 1": { distance: 300, distancePointCovered: 144, distancePoint: 156, start: { x: 198, y: 612 }, middle: { x: 699 , y: 110}, end: { x: 1425, y: 325 } },
         "Hitland eerste 9 hole 2": { distance: 401, distancePoint: 100, start: { x: 349, y: 430 }, middle: { x: 1029 , y: 430}, end: { x: 1209, y: 382 } },
         "Hitland eerste 9 hole 3": { distance: 102, distancePoint: 155, start: { x: 43, y: 47 }, middle: { x: 0 , y: 100}, end: { x: 643, y: 98 } },
         "Hitland eerste 9 hole 4": { distance: 77, distancePoint: 156, start: { x: 290, y: 35 }, middle: { x: 0 , y: 100}, end: { x: 156, y: 426 } },
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (holeData) {
             realLifeDistance = holeData.distance; // Set the real-life distance
             pointDistance = holeData.distancePoint; //Set the middle point distance
+            pointDistanceCovered = holeData.distancePointCovered;
             startPoint = holeData.start; // Set the predefined start point
             middlePoint = holeData.middle; // Set the predefined middle point
             endPoint = holeData.end;     // Set the predefined end point
@@ -144,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
         dot.style.left = `${x - 5}px`; // Centering the dot horizontally
         dot.style.top = `${y - 5}px`;  // Centering the dot vertically
         dot.style.pointerEvents = 'none'; // Prevent interference with clicks
+        dot.setAttribute("id", "redDot");
     
         document.body.appendChild(dot);
         lastRedDot = dot; // Update the reference to the last dot
@@ -173,8 +176,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const scaleFactor = pointDistance / calculateDistance(middlePoint, endPoint); // Based on the predefined points
             const distanceInMeters = pixelDistance * scaleFactor;
 
+            const scaleFactorCovered = pointDistanceCovered / calculateDistance(startPoint, middlePoint);
+
             const pixelDistanceCovered = calculateDistance(clickedPoint, startPoint);
-            const distanceInMetersCovered = pixelDistanceCovered * scaleFactor;
+            const distanceInMetersCovered = pixelDistanceCovered * scaleFactorCovered;
 
             // Log the clicked point and display the real-life distance
             console.log(`Clicked point x: ${clickedPoint.x.toFixed(2)} / y: ${clickedPoint.y.toFixed(2)}`);
@@ -184,6 +189,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Suggest the club based on the calculated distance
             suggestClub(distanceInMeters);
+
+            window.distanceInMetersCovered = distanceInMetersCovered;
+            if (previousClickpoint) {
+                const pixelDistanceBetweenShots = calculateDistance(previousClickpoint, clickedPoint);
+                const distanceBetweenShots = pixelDistanceBetweenShots * scaleFactor;
+                window.distanceBetweenShots = distanceBetweenShots.toFixed(2);
+            }
+
+            previousClickpoint = clickedPoint;
 
             // Compensate for scrolling by using scrollX and scrollY
             const dotX = rect.left + (clickedPoint.x / naturalWidth) * rect.width + window.scrollX;
@@ -208,6 +222,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 '<text class="distanceHeaders">Distance left: </text>' + realLifeDistance + ' meters <br>' +
                                 '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
         suggestClub(realLifeDistance);
+        const redDot = document.getElementById('redDot');
+        redDot.style.display = 'none';
     };
 
     window.onload = function() {

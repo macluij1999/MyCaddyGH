@@ -7,14 +7,25 @@
     <link rel="stylesheet" href="Styling.css"/>
     <link rel="stylesheet" href="Styling-mobile.css"/>
     <script type="text/javascript" src="JS/setHeaderBars.js"></script>
+    <script type="text/javascript" src="JS/searchCourses.js"></script> <!-- Koppel hier het nieuwe JS-bestand -->
 </head>
 <body>
-    <!--Static header and bottom bar-->
     <header>
         <div id="headerandfooter"><script>Setheaderbars()</script></div>
         <img class="golffield" src="icons/golffield.svg" alt="golffield"/>
     </header>
     <div class="coursesTable">
+        <h2 class="playCourseTitle">Select a golfcourse</h2>
+        <div class="searchCourseTable">
+            <div class="searchCourseTableHeader">
+                <h2 class="searchCourseTableHeaderTitle">Look up a golfcourse</h2>
+            </div>
+            <!-- Zoekbalk -->
+            <div class="searchBar">
+                <input class="searchBarField" type="text" id="searchInput" placeholder="Look up a golfcourse" onkeyup="searchCourses()">
+            </div>
+            <!--Einde zoekbalk-->
+        </div>
         <div class="courseTableHeader">
             <h2 class="courseTableHeaderTitle">Available courses</h2>
         </div>
@@ -23,33 +34,34 @@
             <h2>Round</h2>
         </div>
         <div class="courseList"></div>
-            <a href="play-delfland-par3-hole1.html">
-                <div class="courseListItem">
-                    <div class="courseInfo">
-                        <h3 class="courseName">Delfland</h3>
-                        <p class="courseLocation">Schipluiden</p>
-                    </div>
-                    <div class="roundInfo">Par3 9 holes</div>
+        <!-- Course list items zoals eerder -->
+        <a href="play-delfland-par3-hole1.html">
+            <div class="courseListItem">
+                <div class="courseInfo">
+                    <h3 class="courseName">Delfland</h3>
+                    <p class="courseLocation">Schipluiden</p>
                 </div>
-            </a>
-            <a href="play-Hitland-par3.html">
-                <div class="courseListItem">
-                    <div class="courseInfo">
-                        <h3 class="courseName">Hitland</h3>
-                        <p class="courseLocation">Nieuwerkerk a/d IJssel</p>
-                    </div>
-                    <div class="roundInfo">Par3 9 holes</div>
+                <div class="roundInfo">Par3 9 holes</div>
+            </div>
+        </a>
+        <a href="play-Hitland-par3.html">
+            <div class="courseListItem">
+                <div class="courseInfo">
+                    <h3 class="courseName">Hitland</h3>
+                    <p class="courseLocation">Nieuwerkerk a/d IJssel</p>
                 </div>
-            </a>
-            <a href="play-Hitland-FirstNine.html">
-                <div class="courseListItem">
-                    <div class="courseInfo">
-                        <h3 class="courseName">Hitland</h3>
-                        <p class="courseLocation">Nieuwerkerk a/d IJssel</p>
-                    </div>
-                    <div class="roundInfo">Eerste 9 holes</div>
+                <div class="roundInfo">Par3 9 holes</div>
+            </div>
+        </a>
+        <a href="play-Hitland-FirstNine.html">
+            <div class="courseListItem">
+                <div class="courseInfo">
+                    <h3 class="courseName">Hitland</h3>
+                    <p class="courseLocation">Nieuwerkerk a/d IJssel</p>
                 </div>
-            </a>
+                <div class="roundInfo">Eerste 9 holes</div>
+            </div>
+        </a>
     </div>
 </body>
 </html>

@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
             dot.style.left = `${x - 5}px`; // Centering the dot horizontally
             dot.style.top = `${y - 5}px`;  // Centering the dot vertically
             dot.style.pointerEvents = 'none'; // Prevent interference with clicks
+            dot.setAttribute("id", "redDot");
         
             document.body.appendChild(dot);
             lastRedDot = dot; // Update the reference to the last dot
@@ -212,6 +213,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                     '<text class="distanceHeaders">Distance left: </text>' + realLifeDistance + ' meters <br>' +
                                     '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
             suggestClub(realLifeDistance);
+            const redDot = document.getElementById('redDot');
+            redDot.style.display = 'none';
         };
     
         window.onload = function() {

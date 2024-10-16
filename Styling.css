@@ -3,7 +3,8 @@
 body {
     margin: 0px;
     font-family: 'Open Sans', sans-serif;
-    background-color: var(--bg-color); /* Ensure --bg-color is defined in Colorsheet.css */
+    background-color: var(--bg-color);
+    /* Ensure --bg-color is defined in Colorsheet.css */
 }
 
 a {
@@ -12,8 +13,10 @@ a {
 }
 
 .headerbar {
-    background-color: var(--main-darkblue-color); /* Ensure --main-darkblue-color is defined in Colorsheet.css */
-    color: var(--white); /* Ensure --white is defined in Colorsheet.css */
+    background-color: var(--main-darkblue-color);
+    /* Ensure --main-darkblue-color is defined in Colorsheet.css */
+    color: var(--white);
+    /* Ensure --white is defined in Colorsheet.css */
     padding: 5px 0px;
     display: flex;
     justify-content: center;
@@ -39,11 +42,12 @@ h1 {
     bottom: 0;
     overflow: hidden;
     width: 100vw;
-    height: 90px;;
+    height: 90px;
+    ;
     z-index: 10;
 }
 
-.bottombarContent{
+.bottombarContent {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,18 +69,20 @@ h1 {
 }
 
 .left_menu a:hover {
-    background-color: var(--main-light-blue); /* Ensure --main-light-blue is defined in Colorsheet.css */
+    background-color: var(--main-light-blue);
+    /* Ensure --main-light-blue is defined in Colorsheet.css */
 }
 
 .left_menu a.active {
-    background-color: var(--main-light-blue); /* Ensure --main-light-blue is defined in Colorsheet.css */
+    background-color: var(--main-light-blue);
+    /* Ensure --main-light-blue is defined in Colorsheet.css */
 }
 
 .right_menu {
     padding: 10px 25px;
 }
 
-.golffield{
+.golffield {
     position: fixed;
     bottom: 54px;
     overflow: hidden;
@@ -90,7 +96,7 @@ h1 {
 .playHole-Table,
 .coursesTable,
 .myScorecard-Table,
-.scoreCardFullContent{
+.scoreCardFullContent {
     width: 60vw;
     margin: auto;
     background-color: var(--white);
@@ -99,11 +105,10 @@ h1 {
     overflow-y: auto;
 }
 
-.scoreCardTable{
+.scoreCardTable {
     width: 60vw;
     margin: auto;
     background-color: var(--white);
-    margin-top: 6rem;
     overflow-y: auto;
 }
 
@@ -115,7 +120,8 @@ h1 {
 
 .tableHeader,
 .courseTableHeader,
-.scoreCard-TableHeader {
+.scoreCard-TableHeader,
+.searchCourseTableHeader {
     padding: 0px 10px;
     display: flex;
     justify-content: space-between;
@@ -127,8 +133,27 @@ h1 {
 .MybagTableTitle,
 .courseTableHeaderTitle,
 .myScorecardTableTitle,
-.scoreCardTitle {
-    color: var(--white); /* Ensure --main-darkblue-color is defined in Colorsheet.css */
+.scoreCardTitle,
+.searchCourseTableHeaderTitle {
+    color: var(--white);
+    /* Ensure --main-darkblue-color is defined in Colorsheet.css */
+}
+
+.searchBar {
+    width: -webkit-fill-available;
+    margin-bottom: 30px;
+}
+
+.searchBarField,
+.searchBarField:focus-visible {
+    width: -webkit-fill-available;
+    height: 50px;
+    border: 3px solid var(--dark-green);
+    border-radius: 0px 0px 5px 5px;
+    font-size: 18px;
+    color: var(--main-darkblue-color);
+    font-weight: bold;
+    padding: 0px 10px;
 }
 
 .addClub {
@@ -139,38 +164,71 @@ h1 {
 .addNewClubHeader,
 .courseHeader,
 .editClubHeader,
-.scoreCardHeader {
+.activeRoundHeader {
     padding: 0px 10px;
-    background-color: var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
+    background-color: var(--main-green);
+    /* Ensure --main-green is defined in Colorsheet.css */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    color: var(--white); /* Ensure --white is defined in Colorsheet.css */
+    color: var(--white);
+    /* Ensure --white is defined in Colorsheet.css */
+}
+
+.scoreCardHeader{
+    padding: 0px 10px;
+    background-color: var(--main-green);
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    justify-content: space-between;
+    color: var(--white);
 }
 
 .playHoleHeader {
-    width: -webkit-fill-available; /* Can also use width: 100%; for better compatibility */
+    width: -webkit-fill-available;
+    /* Can also use width: 100%; for better compatibility */
     padding: 20px 10px;
-    background-color: var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
+    background-color: var(--main-green);
+    /* Ensure --main-green is defined in Colorsheet.css */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: var(--white); /* Ensure --white is defined in Colorsheet.css */
+    color: var(--white);
+    /* Ensure --white is defined in Colorsheet.css */
 }
 
 .clubContent,
-.courseListItem,
-.scoreCardContent {
+.courseListItem{
     display: flex;
     justify-content: space-between;
     padding: 5px 10px;
-    border-bottom: 1px solid var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
+    border-bottom: 1px solid var(--main-green);
     align-items: center;
+}
+
+.scoreCardContent{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--main-green);
+    align-items: center;
+}
+
+#scoreCardStrokes,
+.scoreCardStrokeTitle{
+    text-align: end;
 }
 
 .clubContentLeft {
     display: flex;
     gap: 10px;
+}
+
+.playCourseTitle {
+    display: flex;
+    justify-content: center;
+    color: var(--main-darkblue-color);
 }
 
 .clubInfo,
@@ -202,7 +260,7 @@ h1 {
     font-weight: bold;
 }
 
-.clubDistanceField{
+.clubDistanceField {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -215,80 +273,100 @@ h1 {
     border: 1px solid black;
 }
 
-.deleteDialogBox{
+.deleteDialogBox {
     padding: 0px;
     border: 2px solid var(--delete-red);
 }
 
-.addNewClubDialogbox, .editClubDialogbox{
+.addNewClubDialogbox,
+.editClubDialogbox,
+.activeRoundDialogbox {
     padding: 0px;
     border: 0px;
     border-radius: 5px;
 }
 
-.deleteDialogHeader{
+.deleteDialogHeader {
     background-color: var(--delete-red);
     padding: 5px 10px;
 }
 
-.deleteDialogHeader h2{
+.deleteDialogHeader h2 {
     margin: 0px;
     color: var(--white);
 }
 
-.deleteDialogText{
+.deleteDialogText {
     padding: 5px 10px;
 }
 
-.deleteDialogButtons{
+.deleteDialogButtons {
     padding: 5px 10px;
 }
 
-#Message, #suggestedClub {
+#Message,
+#suggestedClub {
     margin: 0px 0;
     font-size: 18px;
 }
 
-.distanceHeaders{
+.distanceHeaders {
     font-weight: bold;
 }
 
+.holeHeaders{
+    font-weight: bold;
+    font-size: 20px;
+}
 
 
-.addNewClubTable input, .editClubTable input{
+.addNewClubTable input,
+.editClubTable input {
     border: 1px solid #c4c4c4;
     height: 30px;
 }
 
-.addNewClubSection, .editClubSection{
+.addNewClubSection,
+.editClubSection,
+.activeRoundSection {
     padding: 0px 10px;
     padding-bottom: 20px;
 }
 
-.addNewClubSection h3, .editClubSection h3{
+.addNewClubSection h3,
+.editClubSection h3 {
     margin-bottom: 5px;
 }
 
-.addNewClubSection input, .editClubSection input{
+.addNewClubSection input,
+.editClubSection input {
     width: -webkit-fill-available;
     font-size: 16px;
     padding: 0px 5px;
 }
 
-.addNewClubTable, .editClubTable{
+.addNewClubTable,
+.editClubTable,
+.deleteScoreCardTable,
+.activeRoundTable {
     width: 30vw;
     margin: auto;
     background-color: var(--white);
     overflow-y: auto;
 }
 
-.addNewClubButtons, .editClubButtons{
+.addNewClubButtons,
+.editClubButtons,
+.deleteDialogButtons,
+.activeRoundButtons {
     display: flex;
     flex-direction: row;
     width: -webkit-fill-available;
 }
 
-.addNewClubButtons button, .editClubButtons button{
+.addNewClubButtons button,
+.editClubButtons button,
+.activeRoundButtons button {
     width: 40vw;
     height: 40px;
     font-size: 14px;
@@ -299,11 +377,21 @@ h1 {
     border-radius: 5px;
 }
 
-.addNewClubCancel, .deleteClubButton{
+.deleteDialogButtons button {
+    width: 40vw;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 10px;
+    border-radius: 5px;
+}
+
+.addNewClubCancel,
+.deleteClubButton {
     background-color: var(--delete-red);
 }
 
-.deleteScoreCardButton{
+.deleteScoreCardButton {
     width: 10vw;
     height: 40px;
     font-size: 14px;
@@ -315,15 +403,18 @@ h1 {
     background-color: var(--delete-red);
 }
 
-.addNewClubSave, .editClubSave{
+.addNewClubSave,
+.editClubSave,
+.continueActiveRoundButton {
     background-color: var(--main-green);
 }
 
-.closeIcon{
+.closeIcon {
     padding-right: 5px;
 }
 
-.holeNavButtons, .scorecardButtons{
+.holeNavButtons,
+.scorecardButtons {
     display: flex;
     flex-direction: row;
     width: -webkit-fill-available;
@@ -332,11 +423,11 @@ h1 {
     gap: 10px;
 }
 
-.scorecardButtons{
+.scorecardButtons {
     border-bottom: 2px solid var(--main-green);
 }
 
-.previousHoleButton{
+.previousHoleButton {
     background-color: var(--delete-red);
     width: -webkit-fill-available;
     border: 0px;
@@ -346,7 +437,7 @@ h1 {
     color: var(--white);
 }
 
-.nextHoleButton{
+.nextHoleButton {
     background: var(--main-green);
     width: -webkit-fill-available;
     border: 0px;
@@ -356,7 +447,7 @@ h1 {
     color: var(--white);
 }
 
-.addStrokeButton{
+.addStrokeButton {
     background: var(--main-darkblue-color);
     width: -webkit-fill-available;
     border: 0px;
@@ -367,7 +458,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-.addPuttButton{
+.addPuttButton {
     background: var(--main-light-blue);
     width: -webkit-fill-available;
     border: 0px;
@@ -377,27 +468,28 @@ h1 {
     color: var(--white);
 }
 
-.scoreCardCourseInfo{
+.scoreCardCourseInfo {
     display: flex;
     flex-direction: row;
     width: 40%;
     justify-content: space-between;
 }
 
-.scoreCardContentLeft{
+.scoreCardContentLeft {
     display: flex;
     flex-direction: row;
     width: 40%;
     justify-content: space-between;
 }
 
-.scoreCardPlayedContent{
+.scoreCardPlayedContent {
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid var(--main-green); /* Ensure --main-green is defined in Colorsheet.css */
+    border-bottom: 1px solid var(--main-green);
+    /* Ensure --main-green is defined in Colorsheet.css */
 }
 
-.holeTitle{
+.holeTitle {
     background: var(--main-green);
     padding: 5px 10px;
     color: var(--white);
@@ -407,11 +499,24 @@ h1 {
     align-items: center;
 }
 
-.strokeInfo{
+.strokeInfo {
     display: flex;
     flex-direction: row;
     width: -webkit-fill-available;
     justify-content: space-between;
     padding: 5px 10px;
     border-bottom: 1px solid var(--main-green);
+}
+
+.cancelDeleteDialogBox,
+.stopActiveRoundButton {
+    background-color: var(--off-white);
+    color: var(--black) !important;
+    border: 1px solid #c4c4c4 !important;
+}
+
+.confirmDeleteDialogBox {
+    background-color: var(--delete-red);
+    color: var(--white);
+    border: 0px;
 }

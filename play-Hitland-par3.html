@@ -28,9 +28,26 @@
             <button class="nextHoleButton" href="#">Next hole</a>
         </div>
     </div>
+     <!--Dialog box for active round-->
+     <dialog id="myDialogActiveRound" class="activeRoundDialogbox">
+        <div class="activeRoundTable">
+            <div class="activeRoundHeader">
+                <h2 class="activeRoundTitle">You have an active round</h2>
+            </div>
+            <div id="activeRoundSection" class="activeRoundSection">
+                <!--filled by the function-->
+            </div>
+            <div class="activeRoundButtons">
+                <button type="button" id="stopActiveRoundButton" class="stopActiveRoundButton">Start new round</button>
+                <button type="button" id="continueActiveRoundButton" class="continueActiveRoundButton">Continue round</button>
+            </div>
+        </div>
+    </dialog>
+    <!--End Dialog box for active round-->
     <script type="text/javascript" src="JS/findDistanceHitland.js"> findDistance()</script>
     <script type="text/javascript" src="JS/showNextHoleHitland.js"></script>
     <script type="text/javascript" src="JS/updateImageSize.js"></script>
     <script type="text/javascript" src="JS/scoreCardAddStroke.js"></script>
+    <script type="text/javascript" src="JS/checkActiveRound.js"></script>
 </body>
 </html>

@@ -22,19 +22,21 @@
             <button id="deleteScoreCardButton" class="deleteScoreCardButton" onclick="openDeleteScoreCardDialog()">Delete scorecard</button>
         </div>
         <!--Dialog to remove scoreCard-->
-                <!--Dialog box for deleting editing club-->
-                <dialog id="myDialogDeleteScoreCard" class="deleteDialogBox">
-                    <div class="deleteDialogHeader">
-                        <h2>Delete club</h2>
-                    </div>
-                    <div class="deleteDialogText">
-                        <p>Are you sure you want to delete this scorecard? You can't undo this action</p>
-                    </div>
-                    <div class="deleteDialogButtons">
-                        <button id="close-dialog-delete-scoreCard">Cancel</button>
-                        <button onclick="deleteScoreCard()">Confirm action</button>
-                    </div>
-                </dialog>
+            <dialog id="myDialogDeleteScoreCard" class="deleteDialogBox">
+                <div class="deleteScoreCardTable">
+                <div class="deleteDialogHeader">
+                    <h2>Delete scorecard</h2>
+                </div>
+                <div class="deleteDialogText">
+                    <p>Are you sure you want to delete this scorecard? You can't undo this action</p>
+                </div>
+                <div class="deleteDialogButtons">
+                    <button id="close-dialog-delete-scoreCard" class="cancelDeleteDialogBox">Cancel</button>
+                    <button onclick="deleteScoreCard()" class="confirmDeleteDialogBox">Delete scorecard</button>
+                </div>
+                </div>
+            </dialog>
+        <!--End dialog to remove scorecard-->
         <script src="JS/showScoreCardDetails.js"></script>
         
     </body>

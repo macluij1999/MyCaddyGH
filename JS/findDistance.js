@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const distanceMap = {
         "Delfland par 3 hole 1": { distance: 90, start: { x: 343, y: 931 }, end: { x: 213, y: 119 } },
         "Delfland par 3 hole 2": { distance: 136, start: { x: 36, y: 291 }, end: { x: 1172, y: 224 } },
-        "Delfland par 3 hole 3": { distance: 70, start: { x: 18, y: 26 }, end: { x: 196, y: 133 } },
+        "Delfland par 3 hole 3": { distance: 70, start: { x: 347, y: 142 }, end: { x: 378, y: 750 } },
         "Delfland par 3 hole 4": { distance: 105, start: { x: 268, y: 875 }, end: { x: 351, y: 158 } },
-        "Delfland par 3 hole 5": { distance: 91, start: { x: 643, y: 20 }, end: { x: 166, y: 273 } },
-        "Delfland par 3 hole 6": { distance: 138, start: { x: 833, y: 28 }, end: { x: 154, y: 357 } },
-        "Delfland par 3 hole 7": { distance: 115, start: { x: 471, y: 49 }, end: { x: 161, y: 637 } },
-        "Delfland par 3 hole 8": { distance: 108, start: { x: 425, y: 32 }, end: { x: 152, y: 594 } },
-        "Delfland par 3 hole 9": { distance: 82, start: { x: 77, y: 453 }, end: { x: 296, y: 117 } }
+        "Delfland par 3 hole 5": { distance: 91, start: { x: 1209, y: 189 }, end: { x: 305, y: 197 } },
+        "Delfland par 3 hole 6": { distance: 138, start: { x: 1352, y: 85 }, end: { x: 175, y: 163 } },
+        "Delfland par 3 hole 7": { distance: 115, start: { x: 1163, y: 86 }, end: { x: 250, y: 315 } },
+        "Delfland par 3 hole 8": { distance: 108, start: { x: 1118, y: 83 }, end: { x: 243, y: 306 } },
+        "Delfland par 3 hole 9": { distance: 82, start: { x: 46, y: 338 }, end: { x: 723, y: 236 } }
     };
 
     function setRealLifeDistance() {
@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const dot = document.createElement('div');
+        dot.setAttribute('id', 'redDot');
         dot.style.width = '10px';
         dot.style.height = '10px';
         dot.style.backgroundColor = 'red';
@@ -125,7 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
         dot.style.left = `${x - 5}px`; 
         dot.style.top = `${y - 5}px`;
         dot.style.zIndex = 5;  
-        dot.style.pointerEvents = 'none'; 
+        dot.style.pointerEvents = 'none';
+        dot.setAttribute("id", "redDot"); 
 
         document.body.appendChild(dot);
 
@@ -151,7 +153,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const pixelDistanceCovered = calculateDistance(clickedPoint, startPoint);
             const distanceInMetersCovered = pixelDistanceCovered * scaleFactor;
 
-            messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + 
+            // Log the clicked point and display the real-life distance
+            console.log(`Clicked point x: ${clickedPoint.x.toFixed(2)} / y: ${clickedPoint.y.toFixed(2)}`);
+
+            messageDiv.innerHTML =  '<text class="holeHeaders">' +  document.getElementById('myImage').alt + '</text> <br>'  +
+                                    '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + 
                                     '<text class="distanceHeaders">Distance left: </text>' + distanceInMeters.toFixed(2) + ' meters<br>' + 
                                     '<text class="distanceHeaders">Distance covered: </text>' + distanceInMetersCovered.toFixed(2) + ' meters';
 
@@ -180,16 +186,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.reinitializeFindDistance = function() {
         setRealLifeDistance();
-        messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + 
+        messageDiv.innerHTML =  '<text class="holeHeaders">' +  document.getElementById('myImage').alt + '</text> <br>'  +
+                                '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + 
                                 '<text class="distanceHeaders">Distance left: </text>' + realLifeDistance + ' meters <br>' +
                                 '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
         suggestClub(realLifeDistance);
+        const redDot = document.getElementById('redDot');
+        redDot.style.display = 'none';
     };
 
     window.onload = function() {
         setRealLifeDistance(); 
-        messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + 
+        messageDiv.innerHTML =  '<text class="holeHeaders">' +  document.getElementById('myImage').alt + '</text> <br>'  +
+                                '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + 
                                 '<text class="distanceHeaders">Distance left: </text>' + realLifeDistance + ' meters <br>' +
-                                '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
+                                '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed';
     };
 });

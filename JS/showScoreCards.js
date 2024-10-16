@@ -57,10 +57,8 @@ function showScoreCards() {
         let scoreCardHTML = `
             <a href="scorecard.html?scoreCard=${scoreCardKey}"">
                <div class="scoreCardContent scoreCard${index + 1}">
-                <div class="scoreCardContentLeft">
-                        <h3 class="scoreCardCourse">${scoreCard.Title} (${scoreCard.Round})</h3>
-                        <h3 class="scoreCardDate">${scoreCard.Date}</h3>
-                </div>
+                    <h3 class="scoreCardCourse">${scoreCard.Title} (${scoreCard.Round})</h3>
+                    <h3 class="scoreCardDate">${scoreCard.Date}</h3>
                 <div class="scoreCardStrokesField">
                     <h3 id="scoreCardStrokes">${totalStrokes} strokes</h3>
                 </div>
