@@ -6,10 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const activeRoundText = document.getElementById('activeRoundSection')
 
     if(activeRoundCheck.active === 'true'){
-        document.getElementById('myDialogActiveRound').showModal();
-        activeRoundText.innerHTML = `
-        <h3>Do you want to continue this round?</h3>
-        <p>${activeRoundCheck.key}</p>`;
+        if (activeRoundCheck.redirect === 'false'){
+            document.getElementById('myDialogActiveRound').showModal();
+            activeRoundText.innerHTML = `
+            <h3>Do you want to continue this round?</h3>
+            <p>${activeRoundCheck.key}</p>`;
+        }
+        else{
+            console.log('redirected to this page');
+            continueActiveRound();
+
+        }
     }
     else{
         console.log('no active round');
@@ -36,9 +43,18 @@ function continueActiveRound(){
     const myImage = document.getElementById('myImage');
     let activeRound = localStorage.getItem('activeRound')
     let activeRoundParse = JSON.parse(activeRound);
+
+    //make sure the page is on the correct course
+    if (window.location.href != activeRoundParse.holeUrl){
+        activeRoundParse.redirect = "true";
+        localStorage.setItem('activeRound', JSON.stringify(activeRoundParse));
+        window.location.href = activeRoundParse.holeUrl;
+    }
+    
+    //Update the image and image alt to the last played hole
     myImage.src = activeRoundParse.holeSrc;
     myImage.alt = activeRoundParse.holeAlt;
-
+    
     updateImageSize();
 
     closeActiveRoundDialog();

@@ -1,3 +1,5 @@
+//Old File - delete later
+
 document.addEventListener('DOMContentLoaded', function() {
     let startPoint = null; // Start point coordinates
     let endPoint = null;   // End point coordinates
@@ -214,7 +216,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                     '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
             suggestClub(realLifeDistance);
             const redDot = document.getElementById('redDot');
-            redDot.style.display = 'none';
+            //if statement to make sure that when no red dot is set, there is no error and everything still works fine
+            if(redDot != null){
+                redDot.style.display = 'none';
+            }
         };
     
         window.onload = function() {

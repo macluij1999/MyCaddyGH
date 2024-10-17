@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Object to map image alt attributes to real-life distances
     const distanceMap = {
-        "Hitland eerste 9 hole 1": { distance: 300, distancePointCovered: 144, distancePoint: 156, start: { x: 198, y: 612 }, middle: { x: 699 , y: 110}, end: { x: 1425, y: 325 } },
-        "Hitland eerste 9 hole 2": { distance: 401, distancePoint: 100, start: { x: 349, y: 430 }, middle: { x: 1029 , y: 430}, end: { x: 1209, y: 382 } },
+        "Hitland eerste 9 hole 1": { distance: 300, start: { x: 198, y: 612 }, middle: { x: 699 , y: 110}, end: { x: 1425, y: 325 } },
+        "Hitland eerste 9 hole 2": { distance: 401, start: { x: 312, y: 108 }, middle: { x: 1279 , y: 145}, end: { x: 1532, y: 77 } },
         "Hitland eerste 9 hole 3": { distance: 102, distancePoint: 155, start: { x: 43, y: 47 }, middle: { x: 0 , y: 100}, end: { x: 643, y: 98 } },
         "Hitland eerste 9 hole 4": { distance: 77, distancePoint: 156, start: { x: 290, y: 35 }, middle: { x: 0 , y: 100}, end: { x: 156, y: 426 } },
         "Hitland eerste 9 hole 5": { distance: 104, distancePoint: 156, start: { x: 696, y: 192 }, middle: { x: 0 , y: 100}, end: { x: 128, y: 130 } },
@@ -29,18 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
     function setRealLifeDistance() {
         const imageAlt = document.getElementById('myImage').alt;
         const holeData = distanceMap[imageAlt];
+        const myImage = document.getElementById('myImage');
 
         if (holeData) {
             realLifeDistance = holeData.distance; // Set the real-life distance
-            pointDistance = holeData.distancePoint; //Set the middle point distance
-            pointDistanceCovered = holeData.distancePointCovered;
             startPoint = holeData.start; // Set the predefined start point
-            middlePoint = holeData.middle; // Set the predefined middle point
+            middlePoint = holeData.middle // Set the predefined middle point
             endPoint = holeData.end;     // Set the predefined end point
-            console.log(`Hole: ${imageAlt}, Start: x=${startPoint.x}, y=${startPoint.y}, End: x=${endPoint.x}, y=${endPoint.y}`);
+            console.log(`Hole: ${imageAlt}, Start: x=${startPoint.x}, y=${startPoint.y}, middle: x=${middlePoint.x}, y=${middlePoint.y}, End: x=${endPoint.x}, y=${endPoint.y}`);
         } else {
             realLifeDistance = 0; // Default to 0 if not found
-            pointDistance = 0;
             startPoint = null;
             middlePoint = null;
             endPoint = null;
@@ -170,16 +168,18 @@ document.addEventListener('DOMContentLoaded', function() {
             y: (event.clientY - rect.top) * (naturalHeight / rect.height) // Normalize y to the natural image height
         };
 
-        if (endPoint && middlePoint) {
+        if (endPoint && startPoint) {
             // Calculate the distance between the clicked point and the predefined end point
             const pixelDistance = calculateDistance(clickedPoint, endPoint);
-            const scaleFactor = pointDistance / calculateDistance(middlePoint, endPoint); // Based on the predefined points
+            const pixelDistance1 = calculateDistance(startPoint, middlePoint); // Afstand van startPoint naar middlePoint
+            const pixelDistance2 = calculateDistance(middlePoint, endPoint);   // Afstand van middlePoint naar endPoint
+            const totalPixelDistance = pixelDistance1 + pixelDistance2;
+
+            const scaleFactor = realLifeDistance / totalPixelDistance; // Based on the predefined points
             const distanceInMeters = pixelDistance * scaleFactor;
 
-            const scaleFactorCovered = pointDistanceCovered / calculateDistance(startPoint, middlePoint);
-
             const pixelDistanceCovered = calculateDistance(clickedPoint, startPoint);
-            const distanceInMetersCovered = pixelDistanceCovered * scaleFactorCovered;
+            const distanceInMetersCovered = pixelDistanceCovered * scaleFactor;
 
             // Log the clicked point and display the real-life distance
             console.log(`Clicked point x: ${clickedPoint.x.toFixed(2)} / y: ${clickedPoint.y.toFixed(2)}`);
@@ -190,14 +190,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Suggest the club based on the calculated distance
             suggestClub(distanceInMeters);
 
-            window.distanceInMetersCovered = distanceInMetersCovered;
+            window.distanceInMetersCovered = distanceInMetersCovered; //Set the distanceInMeters as global const so it can be used in scoreCardAddstroke.jss
+            // Only calculate the distance if previousClickpoint is set
             if (previousClickpoint) {
                 const pixelDistanceBetweenShots = calculateDistance(previousClickpoint, clickedPoint);
                 const distanceBetweenShots = pixelDistanceBetweenShots * scaleFactor;
                 window.distanceBetweenShots = distanceBetweenShots.toFixed(2);
+                console.log(`Distance between shots: ${distanceBetweenShots.toFixed(2)} meters`);
             }
 
-            previousClickpoint = clickedPoint;
+            // Update previousClickpoint for the next click
+            previousClickpoint = clickedPoint; // Update previousClickpoint to the current clicked point
 
             // Compensate for scrolling by using scrollX and scrollY
             const dotX = rect.left + (clickedPoint.x / naturalWidth) * rect.width + window.scrollX;
@@ -209,13 +212,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Attach the click event listener to the image
-    document.getElementById('myImage').addEventListener('click', findDistance);
+    // Attach click event listener to the image
+    const myImage = document.getElementById('myImage');
+    myImage.addEventListener('click', findDistance);
 
-    // Expose findDistance globally to be accessible in other scripts
-    window.findDistance = findDistance;
-
-    // Function to re-initialize the real-life distance and step for each new hole
     window.reinitializeFindDistance = function() {
         setRealLifeDistance(); // Update real-life distance and points for the new hole
         messageDiv.innerHTML = '<text class="distanceHeaders">Total distance: </text>' + realLifeDistance + ' meters <br>' + // Reset message
@@ -223,7 +223,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                 '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
         suggestClub(realLifeDistance);
         const redDot = document.getElementById('redDot');
-        redDot.style.display = 'none';
+        //if statement to make sure that when no red dot is set, there is no error and everything still works fine
+        if(redDot != null){
+            redDot.style.display = 'none';
+        }
     };
 
     window.onload = function() {

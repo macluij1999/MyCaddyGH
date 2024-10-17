@@ -13,55 +13,59 @@ function displayScoreCardData() {
 
     if (scoreCardData) {
         const scoreCard = JSON.parse(scoreCardData);
-        const holes = scoreCard.Holes; // Get the holes object
-        const container = document.getElementById('scoreCardDetails'); // Get the container div
+        const holes = scoreCard.Holes; // Haal de holes object op
 
-        // Build the main scorecard title HTML
+        const container = document.getElementById('scoreCardDetails'); // Haal de container div op
+
+        // Bouw de hoofd scorecard titel HTML
         let scoreCardHTML = `
             <div class="scoreCard-TableHeader">
                 <h2 class="scoreCardTitle">${scoreCard.Title} ${scoreCard.Round} ${scoreCard.Date}</h2>
             </div>
         `;
 
-        // Iterate over each hole in the scorecard and build the HTML for each hole and strokes
-        for (let hole in holes) {
-            if (holes.hasOwnProperty(hole)) {
-                let strokes = holes[hole];
-                let totalStrokes = Object.keys(strokes).length;
+        // Haal de hole keys op en sorteer ze numeriek
+        const sortedHoles = Object.keys(holes).sort((a, b) => {
+            return parseInt(a.replace('hole ', '')) - parseInt(b.replace('hole ', ''));
+        });
 
-                // Build the hole section HTML
-                let holeHTML = `
-                    <div class="scoreCardPlayedContent">
-                        <div class="holeTitle">
-                            <h2>${hole}</h2>
-                            <div class="totalStrokes">Total strokes: ${totalStrokes}</div>
+        // Itereer over elke gesorteerde hole en bouw de HTML voor elke hole en strokes
+        sortedHoles.forEach(holeKey => {
+            let strokes = holes[holeKey];
+            let totalStrokes = Object.keys(strokes).length;
+
+            // Bouw de hole sectie HTML
+            let holeHTML = `
+                <div class="scoreCardPlayedContent">
+                    <div class="holeTitle">
+                        <h2>${holeKey}</h2>
+                        <div class="totalStrokes">Total strokes: ${totalStrokes}</div>
+                    </div>
+            `;
+
+            // Itereer over elke stroke en voeg de stroke informatie toe aan de hole HTML
+            for (let stroke in strokes) {
+                if (strokes.hasOwnProperty(stroke)) {
+                    let strokeData = strokes[stroke];
+                    let distance = strokeData.distance ? `${strokeData.distance} meters` : 'putt';
+
+                    holeHTML += `
+                        <div class="strokeInfo">
+                            <h3 class="strokeCount">${stroke}</h3>
+                            <p class="strokeDistance">${distance}</p>
                         </div>
-                `;
-
-                // Iterate over each stroke and add stroke information to the hole HTML
-                for (let stroke in strokes) {
-                    if (strokes.hasOwnProperty(stroke)) {
-                        let strokeData = strokes[stroke];
-                        let distance = strokeData.distance ? `${strokeData.distance} meters` : 'putt';
-
-                        holeHTML += `
-                            <div class="strokeInfo">
-                                <h3 class="strokeCount">${stroke}</h3>
-                                <p class="strokeDistance">${distance}</p>
-                            </div>
-                        `;
-                    }
+                    `;
                 }
-
-                // Close the hole's content div
-                holeHTML += `</div>`;
-                
-                // Append the hole HTML to the overall scorecard HTML
-                scoreCardHTML += holeHTML;
             }
-        }
 
-        // Set the innerHTML of the container to the generated scorecard HTML
+            // Sluit het hole's content div af
+            holeHTML += `</div>`;
+
+            // Voeg de hole HTML toe aan de totale scorecard HTML
+            scoreCardHTML += holeHTML;
+        });
+
+        // Zet de innerHTML van de container naar de gegenereerde scorecard HTML
         container.innerHTML = scoreCardHTML;
     } else {
         console.error('No scorecard data found in localStorage for the given key');

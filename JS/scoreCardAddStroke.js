@@ -51,7 +51,9 @@ addStrokeButton.addEventListener('click', function () {
             active: 'true',
             key: scoreCardKey,
             holeAlt: document.getElementById('myImage').alt,
-            holeSrc: document.getElementById('myImage').src
+            holeSrc: document.getElementById('myImage').src,
+            holeUrl: window.location.href,
+            redirect: 'false'
         }
         
         localStorage.setItem('activeRound', JSON.stringify(activeRound));
@@ -168,6 +170,8 @@ function updateActiveRound(){
     let scoreCardParse = JSON.parse(scoreCard);
     scoreCardParse.holeAlt = document.getElementById('myImage').alt;
     scoreCardParse.holeSrc = document.getElementById('myImage').src;
+    scoreCardParse.holeUrl = window.location.href;
+    scoreCardParse.redirect = "false";
     localStorage.setItem('activeRound', JSON.stringify(scoreCardParse));
 }
 

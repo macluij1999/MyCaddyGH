@@ -8,17 +8,24 @@ document.addEventListener('DOMContentLoaded', function() {
     let previousClickpoint = null; 
     let lastRedDot = null; // Variable to store the last created red dot
 
-    const distanceMap = {
-        "Delfland par 3 hole 1": { distance: 90, start: { x: 343, y: 931 }, end: { x: 213, y: 119 } },
-        "Delfland par 3 hole 2": { distance: 136, start: { x: 36, y: 291 }, end: { x: 1172, y: 224 } },
-        "Delfland par 3 hole 3": { distance: 70, start: { x: 347, y: 142 }, end: { x: 378, y: 750 } },
-        "Delfland par 3 hole 4": { distance: 105, start: { x: 268, y: 875 }, end: { x: 351, y: 158 } },
-        "Delfland par 3 hole 5": { distance: 91, start: { x: 1209, y: 189 }, end: { x: 305, y: 197 } },
-        "Delfland par 3 hole 6": { distance: 138, start: { x: 1352, y: 85 }, end: { x: 175, y: 163 } },
-        "Delfland par 3 hole 7": { distance: 115, start: { x: 1163, y: 86 }, end: { x: 250, y: 315 } },
-        "Delfland par 3 hole 8": { distance: 108, start: { x: 1118, y: 83 }, end: { x: 243, y: 306 } },
-        "Delfland par 3 hole 9": { distance: 82, start: { x: 46, y: 338 }, end: { x: 723, y: 236 } }
-    };
+    function getCourseData() {
+        const url = window.location.href;
+        console.log(`url: ${url}`);
+        const match = url.match(/\/([a-zA-Z0-9\-]+)\.html$/);
+        console.log(`match: ${match}`);
+
+        if (match && match[1]) {
+            const courseName = match[1];
+            console.log(`course name: ${courseName}`);
+
+            // Zoek de juiste golfbaan data uit het 'courses' object
+            return courses[courseName];  
+        }
+        return null;
+    }
+
+    // Hier wordt de juiste 'distanceMap' constant opgezet
+    const distanceMap = getCourseData() || {};  // Vul met de juiste data als het bestaat, anders een lege object
 
     function setRealLifeDistance() {
         const imageAlt = document.getElementById('myImage').alt;
@@ -192,7 +199,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                 '<text class="distanceHeaders">Distance covered: </text>Click where your ball landed'; 
         suggestClub(realLifeDistance);
         const redDot = document.getElementById('redDot');
-        redDot.style.display = 'none';
+        //if statement to make sure that when no red dot is set, there is no error and everything still works fine
+        if(redDot != null){
+            redDot.style.display = 'none';
+        }
     };
 
     window.onload = function() {
